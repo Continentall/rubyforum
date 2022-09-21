@@ -1,0 +1,18 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^5.2.1",
+    "bootstrap-icons": "^1.9.1",
+    "sass": "^1.54.9",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "@rails/ujs": "^7.0.4",
+    "turbolinks": "^5.2.0"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  }
+}

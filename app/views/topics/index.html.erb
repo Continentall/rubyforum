@@ -1,0 +1,7 @@
+<h1 class="text-center">All topics<h1>
+
+<% @topics.each do |topic|%> <!--Цикл each проходит по всем записям из @topics и дробит их на переменные topic-->
+<h2><%= topic.title%></h2><!--передача заголовка topic'а в h2 тег-->
+<time><%= question.created_at%></time>
+<p><%= topic.body%></p><!--передача заголовка topic'а в p тег-->
+<% end %>
