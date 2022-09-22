@@ -12,6 +12,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="p-2 border-dark border-bottom bg-success bg-gradient  text-white">
+      <div class="container">
+        <nav class="d-flex flex-wrap align-items-center justify-content-lg-start">
+          <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><%= link_to "Главная страница",root_path, class: 'nav-link px-2 text-white' %></li> <!-- root - префикс страницы (смотреть в rails/routes), куда мы переходим, _path - указание на отностительность ссылки --->
+            <li><%= link_to "Все обсуждения",topics_path, class: 'nav-link px-2 text-white' %></li> <!-- Почему-то нужно указывать класс после пути! Иначе ошибка( -->
+            <li><%= link_to "Вход",topics_path, class: 'nav-link px-2 text-white' %></li>
+            <li><%= link_to "Регистрация",topics_path, class: 'nav-link px-2 text-white' %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+      <main class="container mt-3">
+        <% flash.each do |key, message|%> <!-- Вывод флэш уведомлений (key- успех,ошибка, предупреждение)-->
+          <%= tag.div message, class: "alert alert-#{key}"%> <!-- tag-хелпер с значением message сам сгенерирует блок div --->
+        <% end %>
+        <%= yield %>
+      </main>
   </body>
 </html>

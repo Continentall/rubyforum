@@ -1,7 +1,26 @@
-<h1 class="text-center">All topics<h1>
+<h1 class="text-center mb-4">Обсуждения<h1>
+
+<%= link_to 'Новое обсуждение', new_topic_path, class: 'btn btn-success btn-lg'%>
 
 <% @topics.each do |topic|%> <!--Цикл each проходит по всем записям из @topics и дробит их на переменные topic-->
-<h2><%= topic.title%></h2><!--передача заголовка topic'а в h2 тег-->
-<time><%= question.created_at%></time>
-<p><%= topic.body%></p><!--передача заголовка topic'а в p тег-->
+    <article class="card mt-3">
+        <div class="card-body">
+            <h4>
+                <%= topic.title%> <!--передача заголовка topic'а в h2 тег-->
+            </h4>
+            <section class="card-text">
+                <time datetime="<%= topic.formatted_created_at %>"> <!-- strftime - Форматирует дату и время по шаблону. datetime - применяет разметку на содержимое блока-->
+                    <small><%= topic.formatted_created_at %></small>
+                </time>
+                <p>
+                    <%= topic.body%> <!--передача заголовка topic'а в p тег-->
+                    <br>
+                    <%= link_to 'Подробнее', topic_path(topic.id), class: 'btn btn-success' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
+                    <%= link_to 'Изменить', edit_topic_path(topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
+                    <%= link_to 'Удалить', topic_path(topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: 'Уверены, что хотите удалить вопрос?'} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
+                    <!-- Потому что метод контроллера destroy вызывается только при получении DELETE запроса на страницу всех вопросов -->
+                </p>
+            </section>
+        </div>
+    </article>
 <% end %>

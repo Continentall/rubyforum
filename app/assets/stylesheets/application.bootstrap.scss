@@ -1,2 +1,11 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.field_with_errors{ // В обьект этого класса Rails оборачивает поле в котором допущена ошибка при вводе
+    .form-control {
+        border-color: $red;
+    }
+    label {
+        color: $red;
+    }
+}
