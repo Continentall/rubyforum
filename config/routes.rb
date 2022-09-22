@@ -2,8 +2,11 @@ Rails.application.routes.draw do
     root 'pages#index' #root - корневой маршрут / (example.com/), pages -имя контроллера который надо вызвать , index - метод котроллера к которому обращаемся
     #Один вызов resources может объявить все необходимые маршруты для ваших действий index, show, new, edit, create, update и destroy.
     #Не менее великолепно, что resources САМ определяет тип необходимых запросов POST,GET а так же (PATCH, PUT , DELETE), но это уже совсем другая история
-    resources :topics  # или так (тоже самое) resources :topics, only: [:index, :new, :edit, :create]
-    
+    resources :topics  do # или так (тоже самое) resources :topics, only: [:index, :new, :edit, :create]
+        resources :messages, only: %i[create]
+    end
+
+    # Это вложенный маршрут. Типа маршруты внутри маршрутов. Забавно resources :path1 do resources :path2 end
     #Таким образом одна строка отправляет в мусорку 4 :З
     #get '/topics', to: 'topics#index'   # GET - метод запроса
     #get '/topics/new', to: 'topics#new'

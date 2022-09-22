@@ -1,6 +1,6 @@
 #Всегда называйте контроллер так (имя таблицы + s)_controller.rb
 class TopicsController < ApplicationController
-    before_action :find_topic_by_id, only: [:edit, :update, :show, :destory] # Эта запись говорит, что перед выполнением методов в квадратных ковычках нужно выполнить функцию find_topic_by_id
+    before_action :find_topic_by_id!, only: [:edit, :update, :show, :destory] # Эта запись говорит, что перед выполнением методов в квадратных ковычках нужно выполнить функцию find_topic_by_id
     
     def index # Контроллер для отображения всех Топиков
         @topics = Topic.all # В переменную образца класса записываем все записи таблицы Topic
@@ -40,6 +40,10 @@ class TopicsController < ApplicationController
 
 
     def show
+        @message = @topic.messages.build # НЕВЕРОЯТНО ВАЖНО если мы хотим сохранить родительские отношения объектов и нужно создать новый экземпляр, то надо использовать .build а не .new, тк .new их не сохранит
+        # Сообщение =  Новый экземпляр типа ответы в топике (Тут мы кстати начинаем создавать сообщение сразу (в Топиках мы делаем это в методе new, но тут new нету так что делаем в show), но не сохраняем, как в БД)
+        @messages = @topic.messages.order created_at: :desc # сортировка по полю created_at :ASC – это краткая форма для восхождения  :DESC  – это краткая форма для спуска 
+        
     end
 
     private
@@ -47,8 +51,8 @@ class TopicsController < ApplicationController
         params.require(:topic).permit(:title, :body)
         # Из присланных параметров найти ТОПИК и разрешить брать только title и body. Что-бы веселые пользователи не всунули чего лишнего 
     end
-    def find_topic_by_id
-        @topic = Topic.find id: params[:id] # Находим топик в БД с полем id равному id указанному в ПАРАМЕТРАХ
+    def find_topic_by_id!
+        @topic = Topic.find params[:id] # Находим топик в БД с полем id равному id указанному в ПАРАМЕТРАХ
         # Используя метод find можно получить объект, соответствующий определенному первичному ключу. ПРИ ПЕРЕДАЧЕ НЕСУЩЕСТВУЮЩЕГО ПАРАМЕТРА ВЫДАСТ ERROR
         # Метод find_by ищет первую запись, соответствующую некоторым условиям. ПРИ ПЕРЕДАЧЕ НЕСУЩЕСТВУЮЩЕГО ПАРАМЕТРА ВЫДАСТ nil
         # Метод where подходит если нужно получить несколько записей которые соответствуют определенным условиям

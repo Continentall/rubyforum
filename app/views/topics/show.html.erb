@@ -10,3 +10,30 @@
 <%= link_to 'Подробнее', topic_path(@topic.id), class: 'btn btn-primary' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
 <%= link_to 'Изменить', edit_topic_path(@topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
 <%= link_to 'Удалить', topic_path(@topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: 'Уверены, что хотите удалить вопрос?'} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
+
+<hr class="my-3">
+<h2 class="text-center mb-4">Напишите ваше сообщение</h2>
+
+<%= render 'shared/errors', object: @message %>
+
+<%= form_with model: [@topic, @message] do |f|%> <!-- Почему же model: [@topic, @message], потому что путь для отправки данных состоит из двух частей, а не одной  -->
+    <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+            <%= f.label :body %>
+        </div>
+        <div class="col-sm-10">
+        <%= f.text_area :body, class: 'form-control' %>
+        </div>
+    </div>
+    <%= f.submit "Опубликовать", class: 'btn btn-primary'%>
+<% end %>
+
+<h2 class="mt-5">Сообщения</h2>
+<% @messages.each do |msg| %>
+    <time datetime="<%= msg.formatted_created_at%>">
+        <small><%= msg.formatted_created_at %></small>
+    </time>
+    <p>
+        <%= msg.body %>
+    </p>
+<% end %>
