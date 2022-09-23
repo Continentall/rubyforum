@@ -6,11 +6,26 @@ class MessagesController < ApplicationController
             flash[:success] = "Сообщение опубликовано"
             redirect_to topic_path(@topic) # В скобке указываем топик что-бы оно само вытащило последный id вопроса
         else
-            render 'topics/show'
+            @messages = @topic.messages.order created_at: :desc
+            render 'topics/show' # Рендер просто выводит страницу но не вызывает метод show. Поэтому нужно обьявить переменную, содержащуюся в show, тут (При редирект ту этого делать не надо)
         end
 
     end
     #!!!!!!!!!!!!!!!!!! @messages = @topic.messages.order created_at :desc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+    def destroy
+        @message = @topic.messages.find params[:id] # Сообщение = от пременной топик sql запросом выбирает сообщение с нужным id
+        @message.destroy
+        flash[:success] = "Сообщение удалено"
+        redirect_to topic_path(@topic)
+    end
+
+
+    def edit
+        @message = @topic.messages.find params[:id]
+    end
+
     private
 
     def find_topic_by_id!

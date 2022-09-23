@@ -14,26 +14,24 @@
 <hr class="my-3">
 <h2 class="text-center mb-4">Напишите ваше сообщение</h2>
 
-<%= render 'shared/errors', object: @message %>
-
-<%= form_with model: [@topic, @message] do |f|%> <!-- Почему же model: [@topic, @message], потому что путь для отправки данных состоит из двух частей, а не одной  -->
-    <div class="mb-3 row">
-        <div class="col-sm-2 col-form-label">
-            <%= f.label :body %>
-        </div>
-        <div class="col-sm-10">
-        <%= f.text_area :body, class: 'form-control' %>
-        </div>
-    </div>
-    <%= f.submit "Опубликовать", class: 'btn btn-primary'%>
-<% end %>
+<%= render 'answers/form' %>
 
 <h2 class="mt-5">Сообщения</h2>
 <% @messages.each do |msg| %>
-    <time datetime="<%= msg.formatted_created_at%>">
-        <small><%= msg.formatted_created_at %></small>
-    </time>
-    <p>
-        <%= msg.body %>
-    </p>
+    <article class="mb-3 card">
+        <div class="card-body">
+            <section class="card-text">
+                <small>
+                    <time datetime="<%= msg.formatted_created_at%>">
+                        <%= msg.formatted_created_at %>
+                    </time>
+                </small>
+                <p>
+                    <%= msg.body %>
+                </p>
+            </section>
+            <%= link_to 'Изменить', edit_topic_message_path(@topic, msg), class: 'btn btn-primary btn-sm' %>
+            <%= link_to 'Удалить', topic_message_path(@topic, msg), class: 'btn btn-danger btn-sm', data: { method: :delete, confirm: "Вы уверены?" } %>
+        </div>
+    </article>
 <% end %>

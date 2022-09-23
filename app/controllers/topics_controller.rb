@@ -1,6 +1,6 @@
 #Всегда называйте контроллер так (имя таблицы + s)_controller.rb
 class TopicsController < ApplicationController
-    before_action :find_topic_by_id!, only: [:edit, :update, :show, :destory] # Эта запись говорит, что перед выполнением методов в квадратных ковычках нужно выполнить функцию find_topic_by_id
+    before_action :find_topic_by_id!, only: [:edit, :update, :show, :destroy] # Эта запись говорит, что перед выполнением методов в квадратных ковычках нужно выполнить функцию find_topic_by_id
     
     def index # Контроллер для отображения всех Топиков
         @topics = Topic.all # В переменную образца класса записываем все записи таблицы Topic

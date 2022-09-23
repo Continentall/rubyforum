@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     #Один вызов resources может объявить все необходимые маршруты для ваших действий index, show, new, edit, create, update и destroy.
     #Не менее великолепно, что resources САМ определяет тип необходимых запросов POST,GET а так же (PATCH, PUT , DELETE), но это уже совсем другая история
     resources :topics  do # или так (тоже самое) resources :topics, only: [:index, :new, :edit, :create]
-        resources :messages, only: %i[create]
+        resources :messages, except: %i[new show]
     end
 
     # Это вложенный маршрут. Типа маршруты внутри маршрутов. Забавно resources :path1 do resources :path2 end
