@@ -1,3 +1,5 @@
+<% currently_at 'Обсуждения'%>
+<% provide :page_title, 'Обсуждение'%>
 <h1 class="text-center mb-4"><%= @topic.title%> </h1>
 <small class="text-center">Id: <%= @topic.id %></small>
 <br>
@@ -14,7 +16,7 @@
 <hr class="my-3">
 <h2 class="text-center mb-4">Напишите ваше сообщение</h2>
 
-<%= render 'answers/form' %>
+<%= render 'messages/form' %>
 
 <h2 class="mt-5">Сообщения</h2>
 <% @messages.each do |msg| %>

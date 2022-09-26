@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
     before_action :find_topic_by_id!
+    before_action :find_message_by_id!, expect: :create
+    # Порядок before_action важен! Сначала ищем тему, потом для нее ответы
     def create
         @message = @topic.messages.build get_message_params  # Сообщение =  Новый экземпляр типа ответы в топике с параметрами
         if @message.save
@@ -14,8 +16,16 @@ class MessagesController < ApplicationController
     #!!!!!!!!!!!!!!!!!! @messages = @topic.messages.order created_at :desc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
+    def update
+        if @message.update get_message_params
+            flash[:success] = "Сообщение опубликовано"
+            redirect_to topic_path(@topic)
+        else
+            render :edit
+        end
+    end
+
     def destroy
-        @message = @topic.messages.find params[:id] # Сообщение = от пременной топик sql запросом выбирает сообщение с нужным id
         @message.destroy
         flash[:success] = "Сообщение удалено"
         redirect_to topic_path(@topic)
@@ -23,7 +33,7 @@ class MessagesController < ApplicationController
 
 
     def edit
-        @message = @topic.messages.find params[:id]
+        
     end
 
     private
@@ -35,6 +45,11 @@ class MessagesController < ApplicationController
         # Метод where подходит если нужно получить несколько записей которые соответствуют определенным условиям
     end
 
+
+    def find_message_by_id!
+    @message = @topic.messages.find params[:id]
+    # Сообщение = от пременной топик sql запросом выбирает сообщение с нужным id
+    end
     def get_message_params
         params.require(:message).permit(:body)
         # Из присланных параметров найти ТОПИК и разрешить брать только title и body. Что-бы веселые пользователи не всунули чего лишнего 

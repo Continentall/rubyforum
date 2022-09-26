@@ -1,0 +1,12 @@
+<%= provide :main_menu do %> 
+    <header class="p-2 border-dark border-bottom bg-success bg-gradient  text-white">
+        <div class="container">
+            <nav class="d-flex flex-wrap align-items-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><%= nav_tab 'Главная страница',root_path, class: 'nav-link px-2', current_page: local_current_page %></li> <!-- root - префикс страницы (смотреть в rails/routes), куда мы переходим, _path - указание на отностительность ссылки --->
+                <li><%= nav_tab 'Обсуждения',topics_path, class: 'nav-link px-2', current_page: local_current_page %></li> <!-- Почему-то нужно указывать класс после пути! Иначе ошибка( -->
+            </ul>
+            </nav>
+        </div>
+        </header>
+<%end%> <!-- Разом записали в main_menu весь этот код -->
