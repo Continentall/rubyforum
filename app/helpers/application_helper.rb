@@ -1,4 +1,5 @@
 module ApplicationHelper
+    include Pagy::Frontend
     def nav_tab(title,url,options={}) # через запятую указано все что передается в блок к которому вызываем функцию
         current_page = options.delete :current_page #удаляем из хэша эту переменную и присваеваем тут
         css_class = current_page == title ? 'text-secondary' : 'text-white'

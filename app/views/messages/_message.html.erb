@@ -1,0 +1,18 @@
+<%= tag.article class: 'mb-3 card', id: dom_id(message) do%>
+<!-- dom_id и dom_class — это вспомогательные методы, которые можно использовать в HTML для получения
+согласованных атрибутов идентификатора html и атрибутов класса для объектов. -->
+        <div class="card-body">
+            <section class="card-text">
+                <small>
+                    <time datetime="<%= message.formatted_created_at%>">
+                        <%= message.formatted_created_at %>
+                    </time>
+                </small>
+                <div>
+                    <%= sanitize message.body %>
+                </div>
+            </section>
+            <%= link_to 'Изменить', edit_topic_message_path(local_topic, message), class: 'btn btn-primary btn-sm' %>
+            <%= link_to 'Удалить', topic_message_path(local_topic, message), class: 'btn btn-danger btn-sm', data: { method: :delete, confirm: "Вы уверены?" } %>
+        </div>
+<% end %>

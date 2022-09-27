@@ -3,10 +3,12 @@ class TopicsController < ApplicationController
     before_action :find_topic_by_id!, only: [:edit, :update, :show, :destroy] # Эта запись говорит, что перед выполнением методов в квадратных ковычках нужно выполнить функцию find_topic_by_id
     
     def index # Контроллер для отображения всех Топиков
-        @topics = Topic.all # В переменную образца класса записываем все записи таблицы Topic
+        @pagy, @topics = pagy Topic.order(created_at: :desc)
+        # @topics = Topic.all # В переменную образца класса записываем все записи таблицы Topic
     end
 
     def new # контроллер для создания нового Топика (без сохранения). Как в sqllite3 создание записи без t.save. Запись кстати по post запросу отправляется
+       
         @topic = Topic.new # Создание новой переменной образца класса, для хранения 1го топика
     end
 
@@ -42,7 +44,8 @@ class TopicsController < ApplicationController
     def show
         @message = @topic.messages.build # НЕВЕРОЯТНО ВАЖНО если мы хотим сохранить родительские отношения объектов и нужно создать новый экземпляр, то надо использовать .build а не .new, тк .new их не сохранит
         # Сообщение =  Новый экземпляр типа ответы в топике (Тут мы кстати начинаем создавать сообщение сразу (в Топиках мы делаем это в методе new, но тут new нету так что делаем в show), но не сохраняем, как в БД)
-        @messages = @topic.messages.order created_at: :desc # сортировка по полю created_at :ASC – это краткая форма для восхождения  :DESC  – это краткая форма для спуска 
+        @pagy, @messages = pagy @topic.messages.order(created_at: :desc)
+        #@messages = @topic.messages.order created_at: :desc # сортировка по полю created_at :ASC – это краткая форма для восхождения  :DESC  – это краткая форма для спуска 
         
     end
 

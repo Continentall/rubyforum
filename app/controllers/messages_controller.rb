@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
+    include Action::RecordIdentifier # модуль в котором находится dom_id надо подключить сюда, в html.erb его и так видно
     before_action :find_topic_by_id!
-    before_action :find_message_by_id!, expect: :create
+    before_action :find_message_by_id!, except: :create
     # Порядок before_action важен! Сначала ищем тему, потом для нее ответы
     def create
         @message = @topic.messages.build get_message_params  # Сообщение =  Новый экземпляр типа ответы в топике с параметрами
@@ -18,8 +19,8 @@ class MessagesController < ApplicationController
 
     def update
         if @message.update get_message_params
-            flash[:success] = "Сообщение опубликовано"
-            redirect_to topic_path(@topic)
+            flash[:success] = "Сообщение изменено"
+            redirect_to topic_path(@topic, anchor: dom_id(@message)) # Якорь позволит после редактирования сразу увитеть мвой изменнный ответ
         else
             render :edit
         end
@@ -31,12 +32,16 @@ class MessagesController < ApplicationController
         redirect_to topic_path(@topic)
     end
 
-
     def edit
         
     end
 
     private
+
+    def get_message_params
+        params.require(:message).permit(:body)
+        # Из присланных параметров найти ТОПИК и разрешить брать только title и body. Что-бы веселые пользователи не всунули чего лишнего 
+    end
 
     def find_topic_by_id!
         @topic = Topic.find params[:topic_id] # Находим топик в БД с полем id равному id указанному в ПАРАМЕТРАХ
@@ -45,13 +50,8 @@ class MessagesController < ApplicationController
         # Метод where подходит если нужно получить несколько записей которые соответствуют определенным условиям
     end
 
-
     def find_message_by_id!
-    @message = @topic.messages.find params[:id]
-    # Сообщение = от пременной топик sql запросом выбирает сообщение с нужным id
-    end
-    def get_message_params
-        params.require(:message).permit(:body)
-        # Из присланных параметров найти ТОПИК и разрешить брать только title и body. Что-бы веселые пользователи не всунули чего лишнего 
+        @message = @topic.messages.find params[:id]
+        # Сообщение = от пременной топик sql запросом выбирает сообщение с нужным id
     end
 end
