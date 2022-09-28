@@ -80,3 +80,22 @@ https://github.com/faker-ruby/faker#default
 ---------------------------------------------------------------
 Для разбиения страниц будет использоваться pagy https://github.com/ddnexus/pagy
 1. Ему нужно для начала создать файлик инициализации (config->initializers->pagy.rb)
+2. Вставляем туда код стартового конфиг файла https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb
+3. В файл инициализации добавим строку " require 'pagy/extras/bootstrap' ", что бы применить бутстрап стили на переключатели страниц
+4. Добавим гем 'pagy' --> bundle i
+5. В application_controller подключаем компонент pagy " include Pagy::Backend "
+6. В application_helper подключаем компонент pagy " include Pagy::Frontend "
+7. Пример применения разбиения по страницам в контроллере " @pagy, @blocks = pagy Block  " 
+8. Можно выводить сразу отсортированные данные " @pagy, @blocks = pagy Block.order(created_at: :desc) "
+9. Отображение переключалки страниц <%== pagy_bootstrap_nav @pagy %>
+---------------------------------------------------------------
+                Шифрование пароля (gem bcrypt) 
+has_secure_password(attribute = :password, validations: true) 
+Добавляет методы для установки и аутентификации по паролю BCrypt. 
+Этот механизм требует, чтобы у вас был атрибут XXX_digest в БД. Где XXX — имя атрибута желаемого пароля.
+1. Так будет выглядеть миграция   rails g model User email:string name:string password_digest:string
+password_digest - строковое поле которое будет содержать хэш пароля, через который bcrypt будет брать реальный пароль
+has_secure_password добавит нам новые виртуальные поля password и password_confirmation
+Виртуальные поля можно вызывать как аттрибуты класса, но в БД они не записываются
+2. has_secure_password добавяем сразу в user.rb к остальным валидациям
+3. Ставим гем bcrypt

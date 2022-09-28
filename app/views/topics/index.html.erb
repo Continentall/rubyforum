@@ -2,12 +2,12 @@
 <% currently_at 'Обсуждения'%>
 <h1 class="text-center mb-4">Обсуждения</h1>
 
-<%= link_to 'Новое обсуждение', new_topic_path, class: 'btn btn-success btn-lg'%>
+<%= link_to 'Новое обсуждение', new_topic_path, class: 'btn btn-success btn-lg mb-3'%>
 
 <%== pagy_bootstrap_nav @pagy %> 
 
 <% @topics.each do |topic|%> <!--Цикл each проходит по всем записям из @topics и дробит их на переменные topic-->
-    <article class="card mt-3">
+    <article class="card my-3">
         <div class="card-body">
             <h4 class="mb-0">
                 <%= topic.title%> <!--передача заголовка topic'а в h2 тег-->
