@@ -4,7 +4,7 @@
 
 <%= link_to 'Новое обсуждение', new_topic_path, class: 'btn btn-success btn-lg mb-3'%>
 
-<%== pagy_bootstrap_nav @pagy %> 
+<%= pagination @pagy %> 
 
 <% @topics.each do |topic|%> <!--Цикл each проходит по всем записям из @topics и дробит их на переменные topic-->
     <article class="card my-3">
@@ -22,7 +22,7 @@
                     <!-- truncate  - хелпер который обрезает текст до указаной длины при отображении -->
                     <br>
                 </p>
-                <p class="float-end">
+                <p class="float-end mb-0">
                     <%= link_to 'Подробнее', topic_path(topic.id), class: 'btn btn-success' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
                     <%= link_to 'Изменить', edit_topic_path(topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
                     <%= link_to 'Удалить', topic_path(topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: 'Уверены, что хотите удалить вопрос?'} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
@@ -33,4 +33,5 @@
     </article>
 <% end %>
 
-<%== pagy_bootstrap_nav @pagy %> <!-- два знака ровно выведут содержимое без экранирования строки -->
+<%= pagination @pagy %>
+<!-- два знака ровно выведут содержимое без экранирования строки -->

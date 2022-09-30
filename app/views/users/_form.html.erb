@@ -10,7 +10,7 @@
         </div>
 
         <div class="col-sm-10">
-            <%= f.email_field :email,  placeholder: "Электронная почта", class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+            <%= f.text_field :email,  placeholder: "Электронная почта", class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
         </div>
     </div>
 
@@ -43,5 +43,18 @@
             <%= f.password_field :password_confirmation,  placeholder: "Подтверждение пароля", class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
         </div>
     </div>
-    <%= f.submit "Зарегистрироваться", class: 'btn btn-success btn-lg' %>
+    <% unless @user.new_record? %> <!--new.record? проверяет отсутствует ли объект для которого он вызван в бд (нет в бд -> он находится в памяти)  -->
+        <div class="mb-3 row">
+            <div class="col-sm-2 col-form-label">
+                <%= f.label :old_password %> <!-- Создает html тег label -->
+            </div>
+
+            <div class="col-sm-10">
+                <%= f.password_field :old_password,  placeholder: "Подтверждение пароля", class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+            </div>
+        </div>
+    <% end %>
+
+    <%= f.submit (@user.new_record? ? "Зарегистрироваться" : "Сохранить"), class: 'btn btn-success btn-lg' %>
+    <!--new.record? проверяет отсутствует ли объект для которого он вызван в бд (нет в бд -> он находится в памяти)  -->
 <% end %>

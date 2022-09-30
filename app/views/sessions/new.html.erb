@@ -1,0 +1,28 @@
+<% provide :page_title, 'Вход'%>
+<% currently_at 'Вход'%>
+
+<h1>Вход</h1>
+
+<%= form_with url: session_path do |f|%> <!-- так как у нас нету никакой модели мы отправляем на адресс наши данные-->
+    <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+            <%= f.label :email %> <!-- Создает html тег label -->
+        </div>
+
+        <div class="col-sm-10">
+            <%= f.email_field :email,  placeholder: "Электронная почта", class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+            <%= f.label :password %> <!-- Создает html тег label -->
+        </div>
+
+        <div class="col-sm-10">
+            <%= f.password_field :password,  placeholder: "Пароль", class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+        </div>
+    </div>
+    
+    <%= f.submit "Войти", class: 'btn btn-success btn-lg' %>
+<% end %>

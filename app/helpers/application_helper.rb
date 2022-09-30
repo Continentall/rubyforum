@@ -2,7 +2,7 @@ module ApplicationHelper
     include Pagy::Frontend
     def nav_tab(title,url,options={}) # через запятую указано все что передается в блок к которому вызываем функцию
         current_page = options.delete :current_page #удаляем из хэша эту переменную и присваеваем тут
-        css_class = current_page == title ? 'text-secondary' : 'text-white'
+        css_class = current_page == title ? 'text-muted' : 'text-black'
 
         options[:class] = if options[:class]
             options[:class] + ' ' + css_class
@@ -11,6 +11,9 @@ module ApplicationHelper
         end
 
         link_to title, url, options
+    end
+    def pagination(obj)
+        raw(pagy_bootstrap_nav(obj)) if obj.pages >1
     end
     def currently_at(current_page = '')
         render partial: 'shared/menu', locals: {local_current_page: current_page}
