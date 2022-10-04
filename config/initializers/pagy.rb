@@ -10,13 +10,11 @@ require 'pagy/extras/bootstrap'
 # All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden per instance by just passing them to
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 
-
 # Instance variables
 # See https://ddnexus.github.io/pagy/api/pagy#instance-variables
 # Pagy::DEFAULT[:page]   = 1                                  # default
 # Pagy::DEFAULT[:items]  = 20                                 # default
 # Pagy::DEFAULT[:outset] = 0                                  # default
-
 
 # Other Variables
 # See https://ddnexus.github.io/pagy/api/pagy#other-variables
@@ -29,10 +27,8 @@ require 'pagy/extras/bootstrap'
 # Pagy::DEFAULT[:i18n_key]   = 'pagy.item_name'                # default
 # Pagy::DEFAULT[:cycle]      = true                            # example
 
-
 # Extras
 # See https://ddnexus.github.io/pagy/extras
-
 
 # Backend Extras
 
@@ -117,7 +113,6 @@ require 'pagy/extras/bootstrap'
 # uncomment if you are going to use Searchkick.pagy_search
 # Searchkick.extend Pagy::Searchkick
 
-
 # Frontend Extras
 
 # Bootstrap extra: Add nav, nav_js and combo_nav_js helpers and templates for Bootstrap pagination
@@ -153,7 +148,6 @@ require 'pagy/extras/bootstrap'
 # Multi size var used by the *_nav_js helpers
 # See https://ddnexus.github.io/pagy/extras/navs#steps
 # Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
-
 
 # Feature Extras
 
@@ -191,7 +185,6 @@ require 'pagy/extras/bootstrap'
 # See https://ddnexus.github.io/pagy/extras/standalone
 # require 'pagy/extras/standalone'
 # Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'  # optional default
-
 
 # Rails
 # Enable the .js file required by the helpers that use javascript
@@ -231,7 +224,6 @@ require 'pagy/extras/bootstrap'
 #                   filepath: 'path/to/pagy-xyz.yml',
 #                   pluralize: lambda{ |count| ... } )
 
-
 # I18n extra: uses the standard i18n gem which is ~18x slower using ~10x more memory
 # than the default pagy internal i18n (see above)
 # See https://ddnexus.github.io/pagy/extras/i18n
@@ -239,7 +231,6 @@ require 'pagy/extras/bootstrap'
 
 # Default i18n key
 # Pagy::DEFAULT[:i18n_key] = 'pagy.item_name'   # default
-
 
 # When you are done setting your own default freeze it, so it will not get changed accidentally
 Pagy::DEFAULT.freeze

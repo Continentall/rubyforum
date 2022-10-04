@@ -122,3 +122,41 @@ user_decorator при вызове .decorate работает только с д
 И добавляем туда следующие строки:
         import '@popperjs/core'
         import 'bootstrap/js/dist/dropdown'
+------------------------------------------------------------------
+Для того что бы запоминать пользователя при входе надо добавить в табличку очередное новое поле
+Поле будет содержать хэш токена для запоминания пользователя
+    rails g migration add_remember_token_digest_to_users remember_token_digest:string
+    rails db:migrate
+(remember_token_digest) тоже digest, он будет шифрован как и пароль ведь этот токен очень важен
+Затем в user.rb надо написать некоторую функцию для генерации токена и отправки его в табличку захэшированным
+------------------------------------------------------------------
+                                rubocop
+gem 'rubocop', '~> 1.36', require: false   
+gem 'rubocop-rails','~> 2.16', require: false
+gem 'rubocop-performance','~> 1.15', require: false
+(ДОБАВЛЯТЬ В development среду)
+
+Потом надо создать конфигурационный файл для rubocop (.rubocop.yml) находится должен в корневой папке
+Содержимое файла должно быть таким
+**********************************************
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1.2
+
+Style/Documentation:
+    Enabled: false
+**********************************************
+Затем выполняем команду что бы запустить проверку (без автоисправления):  "bundle exec rubocop"
+"bundle exec rubocop -A"  - режим проверки с агрессивной автокорекцией проблем
+"bundle exec rubocop -a"  - режим проверки с автокорекцией проблем
+
+Если есть необходимость отключить проверку rubocop в каких-то строчках можно использовать:
+ # rubocop:disable имя проверки
+    код где мы не хотим видеть какую-то ошибку
+ # rubocop:enable имя проверки
+

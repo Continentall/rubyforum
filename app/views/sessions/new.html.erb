@@ -10,7 +10,7 @@
         </div>
 
         <div class="col-sm-10">
-            <%= f.email_field :email,  placeholder: "Электронная почта", class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+            <%= f.email_field :email, value: params[:email],  placeholder: "Электронная почта", class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
         </div>
     </div>
 
@@ -23,6 +23,16 @@
             <%= f.password_field :password,  placeholder: "Пароль", class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
         </div>
     </div>
+
+    <div class="mb-3 row">
+        <div class="offset-sm-2 col-sm-10">
+            <div class="form-check">
+                <%=f.check_box :remember_me, class: 'form-check-input', value: '1' %> <!-- Этот чек-бокс создаст и в params ввернет значение переменной remember_me-->
+                <%=f.label :remember_me, class: 'form-check-label' %>
+            </div>
+        </div>
+    </div>
+
     
     <%= f.submit "Войти", class: 'btn btn-success btn-lg' %>
 <% end %>
