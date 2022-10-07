@@ -11,7 +11,9 @@ class MessagesController < ApplicationController
       flash[:success] = 'Сообщение опубликовано'
       redirect_to topic_path(@topic) # В скобке указываем топик что-бы оно само вытащило последный id вопроса
     else
+      @topic = @topic.decorate
       @pagy, @messages = pagy @topic.messages.order(created_at: :desc)
+      @messages = @messages.decorate
       render 'topics/show' # Рендер просто выводит страницу но не вызывает метод show. Поэтому нужно обьявить переменную, содержащуюся в show, тут (При редирект ту этого делать не надо)
     end
   end

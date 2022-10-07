@@ -14,5 +14,8 @@ Rails.application.routes.draw do
     resources :messages, except: %i[new show]
   end
 
+  namespace :admin do #namespace используется для создания маршрутов такого плана xxx.ru/<namespace>/user
+    resources :users, only: %i[index create] # важно! html файлы и контроллер должны находится в папке с именем namespas'а..
+  end
   # Это вложенный маршрут. Типа маршруты внутри маршрутов. Забавно resources :path1 do resources :path2 end
 end

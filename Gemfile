@@ -46,7 +46,17 @@ gem 'pagy', '~>5.10.1'
 
 gem 'draper', '~>4.0'
 
+gem "rubyzip", "~> 2.3.2"
+
+gem 'caxlsx', '~>3.2.0'
+
+gem 'caxlsx_rails', '~>0.6.3'
+
+gem "rubyXL", "~>3.4"
+
 gem 'valid_email2', '~>4.0'
+
+gem 'activerecord-import', '~>1.4'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

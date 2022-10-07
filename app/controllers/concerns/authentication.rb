@@ -11,7 +11,7 @@ module Authentication
     def current_user
       user = session[:user_id].present? ? user_from_session : user_from_token
 
-      @current_user ||= user&.decorate
+      @current_user ||= user&.decorate # Пользователь вошел в аккаунт если @current_user != nil
     end
 
     def user_from_session
@@ -34,7 +34,6 @@ module Authentication
 
     def enter_session(local_user)
       session[:user_id] = local_user.id # Сессия - хранилище, куда пользователь сам не влезет => признак входа в аккаунт - наличие в сессии вашего id
-      # Проверять это будет метод current_user в главном контроллере
     end
 
     def exit_session
