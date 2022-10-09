@@ -1,5 +1,5 @@
-<% currently_at 'Обсуждения'%>
-<% provide :page_title, 'Новое обсуждение'%>
-<h1 class="text-center mb-4">Новое обсуждение</h1>
+<% currently_at t('menu.topics')%>
+<% provide :page_title, t('.topic')%>
+<h1 class="text-center mb-4"><%= t('.topic') %></h1>
 
 <%= render 'form'%> <!--Поиск  файлика с таким названием в текущей дериктории и его отображение -->

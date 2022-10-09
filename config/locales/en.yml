@@ -3,11 +3,18 @@ en:
   ru: "Russian"
   activerecord:
     models:
-      topic: "Тема"
+      topic: "Topic"
     attributes:
       topic:
         title: "Title"
-        body: "Body"
+        body: "Text"
+      message:
+        body: "Text"
+      user:
+        name: "Name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
   
   pages:
     index:
@@ -15,3 +22,60 @@ en:
 
   menu:
     home: "Home"
+    topics: "Topics"
+    users: "Users"
+  users:
+    new: 
+      title: "Registration"
+    edit:
+      title: "Profile edit"
+    form:
+      email: "Email"
+      password: "Password"
+      confirmation: "Password confirmation"
+      name: "Name"
+      registration: "Registration"
+      save: "Save"
+  topics:
+    show:
+      topic: "Topic"
+      more: "More"
+      edit: "Edit"
+      delete: "Delete"
+      title: "Write your message"
+      messages: "Messages"
+      confirm: "Are you sure you want to delete the message?"
+    new:
+      topic: "New topic"
+    index:
+      confirm: "Are you sure you want to delete the topic"
+    edit:
+      title: "Edit topic"
+    form:
+      title: "Title"
+      text: "Text"
+      publish: "Publish"
+  shared:
+    menu:
+      exit: "Exit"
+      signin: "Sign in"
+      signup: "Sign up"
+  messages:
+    edit:
+      title: "Edit message"
+  admin:
+    users:
+      index:
+        title: "User Administration"
+        download: "Download XLSX archive"
+        id: "#"
+        created: "Created at"
+        updated: "Updated at"
+        import: "Import users from XLSX archive"
+        choose: "Choose archive"
+        upload: "Upload"
+        
+
+    
+
+

@@ -8,9 +8,74 @@ ru:
       topic:
         title: "Заголовок"
         body: "Текст"
-
+      message:
+        body: "Текст"
+      user:
+        name: "Имя"
+        email: "Электронная почта"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+  
   pages:
     index:
       title: "Добро пожаловать на ITcolleque"
+
   menu:
     home: "Главная"
+    topics: "Темы"
+    users: "Пользователи"
+  users:
+    new: 
+      title: "Регистрация"
+    edit:
+      title: "Изменение профиля"
+    form:
+      email: "Электронная почта"
+      password: "Пароль"
+      confirmation: "Подтверждение пароля"
+      name: "Имя пользователя"
+      registration: "Регистрация"
+      save: "Сохранить"
+  topics:
+    show:
+      topic: "Тема"
+      more: "Подробнее"
+      edit: "Изменить"
+      delete: "Удалить"
+      title: "Напишите ваше сообщение"
+      messages: "Сообщения"
+      confirm: "Вы уверены, что хотите удалить сообщение?"
+    new:
+      topic: "Новая тема"
+    index:
+      confirm: "Вы уверены, что хотите удалить тему"
+    edit:
+      title: "Изменить тему"
+    form:
+      title: "Заголовок"
+      text: "Текст"
+      publish: "Опубликовать"
+  shared:
+    menu:
+      exit: "Выйти"
+      signin: "Войти"
+      signup: "Зарегистрироваться"
+  messages:
+    edit:
+      title: "Изменение сообщения"
+  admin:
+    users:
+      index:
+        title: "Администрирование пользователей"
+        download: "Скачать XLSX архив"
+        id: "#"
+        created: "Создано"
+        updated: "Изменено"
+        import: "Добавить пользователей из XLSX архива"
+        choose: "Выберите архив"
+        upload: "Загрузить"
+        
+
+    
+
+

@@ -1,5 +1,5 @@
-<% currently_at 'Обсуждения'%>
-<% provide :page_title, 'Изменение обсуждения'%>
-<h1 class="text-center mb-4">Редактирование обсуждения</h1>
+<% currently_at t('menu.topics')%>
+<% provide :page_title, t('.title') %>
+<h1 class="text-center mb-4"><%= t('.title')%></h1>
 
 <%= render 'form'%> <!--Поиск  файлика с таким названием в текущей дериктории и его отображение -->

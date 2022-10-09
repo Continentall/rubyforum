@@ -1,5 +1,5 @@
-<% currently_at 'Обсуждения'%>
-<% provide :page_title, 'Обсуждение'%>
+<% currently_at t('menu.topics')%>
+<% provide :page_title, t('.topic')%>
 <h1 class="text-center mb-4"><%= @topic.title%> </h1>
 <small class="text-center">Id: <%= @topic.id %></small>
 <br>
@@ -9,16 +9,16 @@
 <div class = "lead my-3">
     <%= sanitize @topic.body %> <!-- sanitize  - хелпер который удаляет с текста все небезопасные тэги html -->
 </div>
-<%= link_to 'Подробнее', topic_path(@topic.id), class: 'btn btn-primary' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
-<%= link_to 'Изменить', edit_topic_path(@topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
-<%= link_to 'Удалить', topic_path(@topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: 'Уверены, что хотите удалить вопрос?'} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
+<%= link_to t('.more'), topic_path(@topic.id), class: 'btn btn-primary' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
+<%= link_to t('.edit'), edit_topic_path(@topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
+<%= link_to t('.delete'), topic_path(@topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: t('.confirm')} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
 
 <hr class="my-3">
-<h2 class="text-center mb-4">Напишите ваше сообщение</h2>
+<h2 class="text-center mb-4"><%= t('.title') %></h2>
 
 <%= render 'messages/form' %>
 
-<h2 class="mt-5">Сообщения</h2>
+<h2 class="mt-5"><%= t('.messages') %></h2>
 
 <%= pagination @pagy %> 
 
