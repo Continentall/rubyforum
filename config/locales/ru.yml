@@ -1,0 +1,16 @@
+ru:
+  en: "Англиский"
+  ru: "Русский"
+  activerecord:
+    models:
+      topic: "Тема"
+    attributes:
+      topic:
+        title: "Заголовок"
+        body: "Текст"
+
+  pages:
+    index:
+      title: "Добро пожаловать на ITcolleque"
+  menu:
+    home: "Главная"

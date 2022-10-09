@@ -4,6 +4,6 @@ class MessageDecorator < ApplicationDecorator
   delegate_all
 
   def formatted_created_at
-    created_at.strftime('%d.%m.%Y %H:%M') # применит strftime к created_at полю у элемента для которого вызван formatted_created_at
+    l created_at, format: :long
   end
 end

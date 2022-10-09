@@ -3,9 +3,31 @@
         <div class="container">
             <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><%= nav_tab 'Главная страница',root_path, class: 'nav-link px-2', current_page: local_current_page %></li> <!-- root - префикс страницы (смотреть в rails/routes), куда мы переходим, _path - указание на отностительность ссылки --->
+                <li><%= nav_tab t('menu.home') ,root_path, class: 'nav-link px-2', current_page: local_current_page %></li> <!-- root - префикс страницы (смотреть в rails/routes), куда мы переходим, _path - указание на отностительность ссылки --->
                 <li><%= nav_tab 'Обсуждения',topics_path, class: 'nav-link px-2', current_page: local_current_page %></li> <!-- Почему-то нужно указывать класс после пути! Иначе ошибка( -->
             </ul>
+
+            <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+                <li class="dropdown">
+                    <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-black', data: {"bs-toggle": 'dropdown'} do %>
+                        <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
+                        <%= t I18n.locale %>
+                    <% end %>
+
+                    <ul class="dropdown-menu">
+                            <% I18n.available_locales.each do |locale| %>
+                            <li>
+                                <% if I18n.locale == locale %>
+                                    <%= tag.span t(locale), class: 'dropdown-item' %>
+                                <% else %>
+                                    <%= link_to t(locale), root_path(locale: locale), class: 'dropdown-item' %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </li>
+            </ul>
+
 
             <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
                 <% if user_signed_in? %> <!-- ПРОЗРЕНИЕ user_signed_in? (внутри эта функция вызывает current_user ) делает нам вход в аккаунт через куки или сессию каждый-каждый раз при запуске или переходе с страницы на странцу -->

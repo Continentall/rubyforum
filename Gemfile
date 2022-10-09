@@ -56,6 +56,8 @@ gem "rubyXL", "~>3.4"
 
 gem 'valid_email2', '~>4.0'
 
+gem 'rails-i18n','~>7.0.5'
+
 gem 'activerecord-import', '~>1.4'
 # Use Sass to process CSS
 # gem "sassc-rails"

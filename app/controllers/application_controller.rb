@@ -5,4 +5,5 @@ class ApplicationController < ActionController::Base
   # Модули (concerns) будут не доступны если не подключить их в главный контроллер
   include ErrorHandling
   include Authentication
+  include Internationalization
 end
