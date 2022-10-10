@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_03_175727) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_10_154719) do
   create_table "messages", force: :cascade do |t|
     t.text "body", null: false
     t.integer "topic_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["topic_id"], name: "index_messages_on_topic_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -24,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_03_175727) do
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,8 +37,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_03_175727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "remember_token_digest"
+    t.string "gravatar_hash"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "messages", "topics"
+  add_foreign_key "messages", "users"
+  add_foreign_key "topics", "users"
 end

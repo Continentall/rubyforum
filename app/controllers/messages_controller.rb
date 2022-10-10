@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   before_action :find_message_by_id!, except: :create
   # Порядок before_action важен! Сначала ищем тему, потом для нее ответы
   def create
-    @message = @topic.messages.build message_params # Сообщение =  Новый экземпляр типа ответы в топике с параметрами
+    @message = @topic.messages.build message_create_params # Сообщение =  Новый экземпляр типа ответы в топике с параметрами
     if @message.save
       flash[:success] = 'Сообщение опубликовано'
       redirect_to topic_path(@topic) # В скобке указываем топик что-бы оно само вытащило последный id вопроса
@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
   # !!!!!!!!!!!!!!!!!! @messages = @topic.messages.order created_at :desc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   def update
-    if @message.update message_params
+    if @message.update message_update_params
       flash[:success] = 'Сообщение изменено'
       redirect_to topic_path(@topic, anchor: dom_id(@message)) # Якорь позволит после редактирования сразу увитеть мвой изменнный ответ
     else
@@ -38,7 +38,12 @@ class MessagesController < ApplicationController
 
   private
 
-  def message_params
+  def message_create_params
+    params.require(:message).permit(:body).merge(user_id: current_user.id)
+    # Из присланных параметров найти ТОПИК и разрешить брать только title и body. Что-бы веселые пользователи не всунули чего лишнего
+  end
+
+  def message_update_params
     params.require(:message).permit(:body)
     # Из присланных параметров найти ТОПИК и разрешить брать только title и body. Что-бы веселые пользователи не всунули чего лишнего
   end

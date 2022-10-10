@@ -1,0 +1,29 @@
+<article class="card my-3">
+
+        <section class="card-header">
+            <%= topic.user.gravatar %>
+            <%= topic.user.name_or_email %>
+        </section>
+        <div class="card-body">
+            <h4 class="mb-0">
+                <%= topic.title%> <!--передача заголовка topic'а в h2 тег-->
+            </h4>
+            <section class="card-text">
+                <time datetime="<%= topic.formatted_created_at %>"> <!-- strftime - Форматирует дату и время по шаблону. datetime - применяет разметку на содержимое блока-->
+                    <small class="text-secondary"><%= topic.formatted_created_at %></small>
+                </time>
+                <p class="mt-2">
+                    <%= truncate strip_tags(topic.body), length: 140 %> <!--передача заголовка topic'а в p тег-->
+                    <!-- strip_tags  - хелпер который удаляет с текста все тэги html -->
+                    <!-- truncate  - хелпер который обрезает текст до указаной длины при отображении -->
+                    <br>
+                </p>
+                <p class="float-end mb-0">
+                    <%= link_to t('topics.show.more'), topic_path(topic.id), class: 'btn btn-success' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
+                    <%= link_to t('topics.show.edit'), edit_topic_path(topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
+                    <%= link_to t('topics.show.delete'), topic_path(topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: t('.confirm')} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
+                    <!-- Потому что метод контроллера destroy вызывается только при получении DELETE запроса на страницу всех вопросов -->
+                </p>
+            </section>
+        </div>
+    </article>

@@ -18,7 +18,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new topic_params # Создание нового топика с отправленными через post параметрами, отфильтрованными через topic_params
+    @topic = current_user.topics.build topic_params # Создание нового топика с привязкой пользователя с отправленными через post параметрами, отфильтрованными через topic_params
     if @topic.save # тут пытаемся сохранить и если все пройдет валидацию то выполняем if иначе else
       flash[:success] = 'Обсуждение успешно созданно'
       redirect_to topics_path # перенаправить на странцу

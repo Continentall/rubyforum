@@ -319,3 +319,38 @@ end
     {locale:I18n.locale}
   end
 **********************
+----------------------------------------------------------------------
+        Привязка пользователя к сообщениям и темам
+  rails g migration add_user_id_to_messages user:belongs_to
+belongs_to  -  принадлежит || То есть мы говорим что Message принадлежит User
+Соответственно в Message появится поле user_id, для привязки
+Повторим данное действие для topic:
+  rails g migration add_user_id_to_topics user:belongs_to
+## Кстати не возник вопрос почему привязка идет туда куда надо?
+## Все благодаря правильному наименованию миграций
+##  add_user_id_to_MESSAGES - значит добавляем к Message
+
+Так-с это создало привязку на уровне БД, но не создало ее на уровне модели
+
+Поэтому добавим в модель пользователя данные строки 
+user.rb
+***************
+has_many :topics, dependent: :destroy
+has_many :messages, dependent: :destroy
+***************
+
+В модели тем и сообщений добавим это: belongs_to :user
+----------------------------------------------------------------------
+@topic = Topic.new topic_params - создание нового топика без привязки к пользователю
+@topic = current_user.topics.build topic_params
+# build - Возвращает новый объект типа коллекции, который был создан с атрибутами и связан с этим объектом, но еще не сохранен.
+
+НО ВОТ НЕЗАДАЧА 
+@message = @topic.messages.build message_params
+в create у message eже есть привязка
+
+поэтому связывать мы будем через параметры 
+def message_params
+  params.require(:message).permit(:body).merge(user_id: current_user.id)
+  # merge - добавит в параметры user_id с значением id пользователя
+end

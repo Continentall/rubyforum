@@ -9,6 +9,11 @@
 <div class = "lead my-3">
     <%= sanitize @topic.body %> <!-- sanitize  - хелпер который удаляет с текста все небезопасные тэги html -->
 </div>
+
+<div class="mb-3">
+    <%= @topic.user.gravatar %>
+    <%= @topic.user.name_or_email %>
+</div>
 <%= link_to t('.more'), topic_path(@topic.id), class: 'btn btn-primary' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
 <%= link_to t('.edit'), edit_topic_path(@topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
 <%= link_to t('.delete'), topic_path(@topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: t('.confirm')} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->

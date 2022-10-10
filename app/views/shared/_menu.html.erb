@@ -32,7 +32,10 @@
             <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
                 <% if user_signed_in? %> <!-- ПРОЗРЕНИЕ user_signed_in? (внутри эта функция вызывает current_user ) делает нам вход в аккаунт через куки или сессию каждый-каждый раз при запуске или переходе с страницы на странцу -->
                     <li class="dropdown">
-                        <%= nav_tab current_user.name_or_email ,'#', class: 'nav-link px-2 text-black dropdown-toggle', data: {"bs-toggle": 'dropdown'}, current_page: local_current_page %>
+                       <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white', data: {"bs-toggle": 'dropdown'} do %>
+                            <%= current_user.gravatar %>
+                            <%= current_user.name_or_email %>
+                       <% end %>
                         <ul class="dropdown-menu">
                             <li><%= link_to t('users.edit.title'), edit_user_path(current_user) ,class: 'dropdown-item'%></li>
                             <li><hr class = "dropdown-devider"></li>
