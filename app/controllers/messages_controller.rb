@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MessagesController < ApplicationController
+  include TopicsMessages
   include ActionView::RecordIdentifier # модуль в котором находится dom_id надо подключить сюда, в html.erb его и так видно
   before_action :find_topic_by_id!
   before_action :find_message_by_id!, except: :create
@@ -11,10 +12,7 @@ class MessagesController < ApplicationController
       flash[:success] = 'Сообщение опубликовано'
       redirect_to topic_path(@topic) # В скобке указываем топик что-бы оно само вытащило последный id вопроса
     else
-      @topic = @topic.decorate
-      @pagy, @messages = pagy @topic.messages.order(created_at: :desc)
-      @messages = @messages.decorate
-      render 'topics/show' # Рендер просто выводит страницу но не вызывает метод show. Поэтому нужно обьявить переменную, содержащуюся в show, тут (При редирект ту этого делать не надо)
+      load_topic_messages(do_render: true)
     end
   end
   # !!!!!!!!!!!!!!!!!! @messages = @topic.messages.order created_at :desc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

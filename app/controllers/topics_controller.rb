@@ -2,8 +2,8 @@
 
 # Всегда называйте контроллер так (имя таблицы + s)_controller.rb
 class TopicsController < ApplicationController
+  include TopicsMessages
   before_action :find_topic_by_id!, only: %i[edit update show destroy] # Эта запись говорит, что перед выполнением методов в квадратных ковычках нужно выполнить функцию find_topic_by_id
-
   # Контроллер для отображения всех Топиков
   def index
     @pagy, @topics = pagy Topic.order(created_at: :desc) # тут нельзя просто дописать .decorate (pagy не дружит с draper)
@@ -45,12 +45,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = @topic.decorate # задекорировав topics мы не задекорировали еще и topic, что могло бы показаться логичным, но нет
-    @message = @topic.messages.build # НЕВЕРОЯТНО ВАЖНО если мы хотим сохранить родительские отношения объектов и нужно создать новый экземпляр, то надо использовать .build а не .new, тк .new их не сохранит
-    # Сообщение =  Новый экземпляр типа ответы в топике (Тут мы кстати начинаем создавать сообщение сразу (в Топиках мы делаем это в методе new, но тут new нету так что делаем в show), но не сохраняем, как в БД)
-    @pagy, @messages = pagy @topic.messages.order(created_at: :desc)
-    @messages = @messages.decorate
-    # @messages = @topic.messages.order created_at: :desc # сортировка по полю created_at :ASC – это краткая форма для восхождения  :DESC  – это краткая форма для спуска
+    load_topic_messages
   end
 
   private

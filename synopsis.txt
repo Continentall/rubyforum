@@ -354,3 +354,16 @@ def message_params
   params.require(:message).permit(:body).merge(user_id: current_user.id)
   # merge - добавит в параметры user_id с значением id пользователя
 end
+----------------------------------------------------------------------
+                    Полиморфические отношения
+Их суть в том что одну модель можно привязывать к множеству моделей
+Это означает, что у модели может быть несколько типов владельцев
+
+Пример генерации полиморфной модели комментария:
+  rails g model Comment body:string commentable:references{polymorphic} user:belongs_to
+             (имя таблицы)(поле)    (-------об этом опишу ниже--------)(привязка к user)
+commentable:references{polymorphic} по сути данная конструкция создаст нам в таблице Comment
+Два поля (необходимых для полиморфической ассоциации):
+  commentable_type (string) - та модель к которой нужна привязка
+  commentable_id (int) - id модель к которой привязка
+  
