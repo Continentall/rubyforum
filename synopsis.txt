@@ -366,4 +366,29 @@ commentable:references{polymorphic} по сути данная конструк�
 Два поля (необходимых для полиморфической ассоциации):
   commentable_type (string) - та модель к которой нужна привязка
   commentable_id (int) - id модель к которой привязка
-  
+
+!!!!!!!!!!!!!!!!!!!! rails g model Comment body:string commentable:references{polymorphic} user:belongs_to 
+выдает ошибку: No value provided for option '--orm'
+Поэтому ошибку я решил сгенерировав пустую моделю и прописал код вручную
+*******миграция************
+class CreateComments < ActiveRecord::Migration[7.0]
+  def change
+    create_table :comments do |t|
+      t.string :body
+      t.references :commentable, polymorphic: true, null: false
+      t.belongs_to :user, null: false, foreign_key: true
+      
+      t.timestamps
+    end
+  end
+end
+***************************
+
+*********Модель************
+class Comment < ApplicationRecord
+    belongs_to :commentable, polymorphic: true
+    belongs_to :user
+
+    validates :body, presence: true, length: { minimum: 2 }
+end
+***************************
