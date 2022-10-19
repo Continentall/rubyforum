@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :users, only: %i[new create edit update]
 
     resources :topics do # или так (тоже самое) resources :topics, only: [:index, :new, :edit, :create]
+      resources :comments, only: %i[create destroy]
       resources :messages, except: %i[new show]
+    end
+    resources :messages, except: %i[new show] do
+      resources :comments, only: %i[create destroy]
     end
 
     namespace :admin do #namespace используется для создания маршрутов такого плана xxx.ru/<namespace>/user

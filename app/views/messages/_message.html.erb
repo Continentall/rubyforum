@@ -11,7 +11,7 @@
             <section class="card-text mb-3">
                     <div class="col-sm-9">
                         <small>
-                            <time datetime="<%= message.formatted_created_at%>">
+                            <time datetime="<%= message.formatted_created_at %>">
                                 <%= message.formatted_created_at %>
                             </time>
                         </small>
@@ -26,3 +26,7 @@
         </div>
     </div>
 <% end %>
+
+<%= render 'comments/commentable', commentable: message, comment: @comment,
+html_id: dom_id(message, 'comment_form') %>
+<!-- dom_id(message, 'comment_form') сгенерирует для этих форм id вида "comment_form_message_id"-->

@@ -15,6 +15,8 @@ en:
         email: "Email"
         password: "Password"
         password_confirmation: "Password confirmation"
+      comment:
+        body: "Text"
   
   pages:
     index:
@@ -45,6 +47,7 @@ en:
       title: "Write your message"
       messages: "Messages"
       confirm: "Are you sure you want to delete the message?"
+      comments: "Show comments"
     new:
       topic: "New topic"
     index:
@@ -74,6 +77,9 @@ en:
         import: "Import users from XLSX archive"
         choose: "Choose archive"
         upload: "Upload"
+  comments:
+    create:
+      success: "Comment created"
         
 
     

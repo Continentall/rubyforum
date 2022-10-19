@@ -15,7 +15,8 @@ ru:
         email: "Электронная почта"
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
-  
+      comment:
+        body: "Текст"
   pages:
     index:
       title: "Добро пожаловать на ITcolleque"
@@ -45,6 +46,7 @@ ru:
       title: "Напишите ваше сообщение"
       messages: "Сообщения"
       confirm: "Вы уверены, что хотите удалить сообщение?"
+      comments: "Показать комментарии"
     new:
       topic: "Новая тема"
     index:
@@ -74,6 +76,9 @@ ru:
         import: "Добавить пользователей из XLSX архива"
         choose: "Выберите архив"
         upload: "Загрузить"
+  comments:
+    create:
+      success: "Комментарий создан"
         
 
     

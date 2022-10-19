@@ -14,11 +14,17 @@
     <%= @topic.user.gravatar %>
     <%= @topic.user.name_or_email %>
 </div>
-<%= link_to t('.more'), topic_path(@topic.id), class: 'btn btn-primary' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
-<%= link_to t('.edit'), edit_topic_path(@topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
-<%= link_to t('.delete'), topic_path(@topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: t('.confirm')} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
 
-<hr class="my-3">
+    <%= render 'comments/commentable', commentable: @topic, comment: @comment, html_id: 'topicsComments' %>
+    <!--@comment у нас вообще-то не существует, но мы что-то передаем, что бы если валидация не пройдет у нас было значение nil, а не пустота -->
+
+    <div class="border-top border-bottom py-3 mt-3">
+        <div class="btn-group">
+            <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
+            <%= link_to t('.edit'), edit_topic_path(@topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
+            <%= link_to t('.delete'), topic_path(@topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: t('.confirm')} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
+        </div>
+    </div>
 <h2 class="text-center mb-4"><%= t('.title') %></h2>
 
 <%= render 'messages/form' %>

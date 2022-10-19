@@ -364,7 +364,7 @@ end
              (имя таблицы)(поле)    (-------об этом опишу ниже--------)(привязка к user)
 commentable:references{polymorphic} по сути данная конструкция создаст нам в таблице Comment
 Два поля (необходимых для полиморфической ассоциации):
-  commentable_type (string) - та модель к которой нужна привязка
+  commentable_type (string) - тип модели к которой нужна привязка
   commentable_id (int) - id модель к которой привязка
 
 !!!!!!!!!!!!!!!!!!!! rails g model Comment body:string commentable:references{polymorphic} user:belongs_to 
@@ -392,3 +392,34 @@ class Comment < ApplicationRecord
     validates :body, presence: true, length: { minimum: 2 }
 end
 ***************************
+
+*******commentable.rb (model concern)********
+
+module Commentable
+    extend ActiveSupport::Concern
+
+    included do
+        has_many :comments, as: :commentable, dependent: :destroy
+        # Данный concern позволяет подключить к модели следующую логику:
+        # Модель имеет много коментариев и это отношнение будет называться commentable (commentable user) - комментируемый пользователь
+        # В модели comment мы уже указывали это отношение:
+        # belongs_to :commentable, polymorphic: true
+    end
+end
+*********************************************
+Затем подключим Commentable в модели topic, message:
+    include Commentable
+
+Затем нам нужны маршруты для комментирования тем и сообщений
+****************routes.rb****************
+resources :topics do
+      resources :comments, only: %i[create destroy]
+      resources :messages, except: %i[new show]
+end
+
+resources :messages, except: %i[new show] do
+      resources :comments, only: %i[create destroy]
+end
+
+*****************************************
+
