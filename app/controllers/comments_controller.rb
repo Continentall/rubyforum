@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
         @comment = @commentable.comments.build comment_params
 
         if @comment.save
-            flash[:success] = t('.suсcess')
+            flash[:success] = t '.success'
             redirect_to topic_path(@topic)
         else
             @comment = @comment.decorate

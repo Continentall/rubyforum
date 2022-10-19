@@ -63,6 +63,7 @@ en:
       exit: "Exit"
       signin: "Sign in"
       signup: "Sign up"
+
   messages:
     edit:
       title: "Edit message"
@@ -82,7 +83,8 @@ en:
       confirm: "Are you sure you want to delete the comment?"
     create:
       success: "Comment created"
-      
+    destroy:
+      success: "Comment deleted"
         
 
     

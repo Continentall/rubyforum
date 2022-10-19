@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   before_action :find_topic_by_id!, only: %i[edit update show destroy] # Эта запись говорит, что перед выполнением методов в квадратных ковычках нужно выполнить функцию find_topic_by_id
   # Контроллер для отображения всех Топиков
   def index
-    @pagy, @topics = pagy Topic.order(created_at: :desc) # тут нельзя просто дописать .decorate (pagy не дружит с draper)
+    @pagy, @topics = pagy Topic.includes([:user]).order(created_at: :desc) # тут нельзя просто дописать .decorate (pagy не дружит с draper)
 
     @topics = @topics.decorate
     # @topics = Topic.all # В переменную образца класса записываем все записи таблицы Topic
