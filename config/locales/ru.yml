@@ -77,6 +77,8 @@ ru:
         choose: "Выберите архив"
         upload: "Загрузить"
   comments:
+    comment:
+      confirm: "Вы уверены, что хотите удалить комментарий?"
     create:
       success: "Комментарий создан"
         

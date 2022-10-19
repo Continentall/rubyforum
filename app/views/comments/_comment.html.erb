@@ -11,6 +11,8 @@
             <p>
               <%= sanitize comment.body %>
             </p>
+            <%= link_to t('topic.show.delete'), polymorphic_path([comment.commentable, comment]), class: 'btn btn-danger btn-sm',
+            data: {method: :delete, confirm: t('.confirm')} %>
           </div>
         </section>
       </div>
