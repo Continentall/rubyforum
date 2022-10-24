@@ -13,4 +13,10 @@ class Topic < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 2 } # Валидация заголовка на его наличие и длину более 2
   validates :body, presence: true, length: { minimum: 2 }
+
+  scope :all_by_tags, ->(tag_ids) do
+    topics = includes(:user, :topic_tags, :tags)
+    topics = topics.joins(:tags).where(tags: tag_ids) if tag_ids
+    topics.order(created_at: :desc)
+  end
 end

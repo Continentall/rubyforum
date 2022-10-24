@@ -23,6 +23,15 @@
             <%= f.text_area :body,  placeholder: t('.text'), class: 'form-control' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
         </div>
     </div>
+    <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+        <%= f.label :tags %>
+        </div>
+
+        <div class="col-sm-10">
+            <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true %>
+        </div>
+    </div>
 
     <%= f.submit t('.publish'), class: 'btn btn-success' %>
 <% end %>

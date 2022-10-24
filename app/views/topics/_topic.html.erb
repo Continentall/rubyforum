@@ -12,6 +12,9 @@
                 <time datetime="<%= topic.formatted_created_at %>"> <!-- strftime - Форматирует дату и время по шаблону. datetime - применяет разметку на содержимое блока-->
                     <small class="text-secondary"><%= topic.formatted_created_at %></small>
                 </time>
+                <div class="mt-2">
+                    <%= render topic.tags %>
+                </div>
                 <p class="mt-2">
                     <%= truncate strip_tags(topic.body), length: 140 %> <!--передача заголовка topic'а в p тег-->
                     <!-- strip_tags  - хелпер который удаляет с текста все тэги html -->
