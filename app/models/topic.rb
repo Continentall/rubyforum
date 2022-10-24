@@ -8,6 +8,8 @@ class Topic < ApplicationRecord
   # :dependent - Управляет тем, что произойдет со связанными объектами, когда его владелец будет уничтожен: destroy - одна из его опций
   # Все опци смотреть тут (6.25 пункт): http://rusrails.ru/active-record-associations#dependent3
   belongs_to :user
+  has_many :topic_tags, dependent: :destroy
+  has_many :tags, through: :topic_tags
 
   validates :title, presence: true, length: { minimum: 2 } # Валидация заголовка на его наличие и длину более 2
   validates :body, presence: true, length: { minimum: 2 }

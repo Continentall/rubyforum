@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_12_123145) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_24_133304) do
   create_table "comments", force: :cascade do |t|
     t.string "body"
     t.string "commentable_type", null: false
@@ -30,6 +30,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_123145) do
     t.integer "user_id", null: false
     t.index ["topic_id"], name: "index_messages_on_topic_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topic_tags", force: :cascade do |t|
+    t.integer "topic_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_topic_tags_on_tag_id"
+    t.index ["topic_id", "tag_id"], name: "index_topic_tags_on_topic_id_and_tag_id", unique: true
+    t.index ["topic_id"], name: "index_topic_tags_on_topic_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -55,5 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_123145) do
   add_foreign_key "comments", "users"
   add_foreign_key "messages", "topics"
   add_foreign_key "messages", "users"
+  add_foreign_key "topic_tags", "tags"
+  add_foreign_key "topic_tags", "topics"
   add_foreign_key "topics", "users"
 end
