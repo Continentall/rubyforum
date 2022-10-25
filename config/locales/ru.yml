@@ -51,6 +51,7 @@ ru:
       topic: "Новая тема"
     index:
       confirm: "Вы уверены, что хотите удалить тему"
+      search_by_tags: "Поиск по тегам"
     edit:
       title: "Изменить тему"
     form:

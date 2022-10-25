@@ -52,6 +52,7 @@ en:
       topic: "New topic"
     index:
       confirm: "Are you sure you want to delete the topic"
+      search_by_tags: "Search by tags"
     edit:
       title: "Edit topic"
     form:
