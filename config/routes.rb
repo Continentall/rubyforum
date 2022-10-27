@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
   end
 
+  namespace :api do
+    resources :tags, only: :index
+  end
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do #  /#{I18n.available_locales.join("|")}/ - регулярное выражение для передачи допустимых локализаций из application.rb
     # Теперь мы можем делать марштруты localhost/:locale/topic () говорят что это необязательно, те можно и без них
     root 'pages#index' # root - корневой маршрут / (example.com/), pages -имя контроллера который надо вызвать , index - метод котроллера к которому обращаемся

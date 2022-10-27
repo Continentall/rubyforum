@@ -4,7 +4,6 @@
 class TopicsController < ApplicationController
   include TopicsMessages
   before_action :find_topic_by_id!, only: %i[edit update show destroy] # Эта запись говорит, что перед выполнением методов в квадратных ковычках нужно выполнить функцию find_topic_by_id
-  before_action :fetch_tags, only: %i[new edit]
   # Контроллер для отображения всех Топиков
   def index
     @pagy, @topics = pagy Topic.all_by_tags(params[:tag_ids])
@@ -61,8 +60,5 @@ class TopicsController < ApplicationController
     # Используя метод find можно получить объект, соответствующий определенному первичному ключу. ПРИ ПЕРЕДАЧЕ НЕСУЩЕСТВУЮЩЕГО ПАРАМЕТРА ВЫДАСТ ERROR
     # Метод find_by ищет первую запись, соответствующую некоторым условиям. ПРИ ПЕРЕДАЧЕ НЕСУЩЕСТВУЮЩЕГО ПАРАМЕТРА ВЫДАСТ nil
     # Метод where подходит если нужно получить несколько записей которые соответствуют определенным условиям
-  end
-  def fetch_tags
-    @tags = Tag.all
   end
 end

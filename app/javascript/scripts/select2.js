@@ -18,6 +18,34 @@ $(document).on("turbolinks:load", function(){
             allowClear: Boolean($this.data("allow-clear")),
             language: select2_langs[$('body').data('lang')]
         }
+
+        if ($this.hasClass('js-ajax-select')) {
+            const ajax_opts = {
+                ajax: {
+                url: $this.data('ajax-url'),
+                data: function(params){
+                    return {
+                        term: params.term
+                    }
+                },
+                dataType: 'json',
+                delay: 1000,
+                processResults: function(data, params) {
+                    const arr = $.map(data, function(value, index) {
+                        return {
+                            id: value.id,
+                            text: value.title
+                        }
+                    })
+                    return { results: arr }
+                },
+                cache: true
+            },
+            minimumInputLength: 1
+        }
+        opts = Object.assign(opts, ajax_opts)
+    }
+        
         $this.select2(opts)
     })
 })
