@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_24_133304) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_28_100855) do
   create_table "comments", force: :cascade do |t|
     t.string "body"
     t.string "commentable_type", null: false
@@ -65,7 +65,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_133304) do
     t.datetime "updated_at", null: false
     t.string "remember_token_digest"
     t.string "gravatar_hash"
+    t.integer "role", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["role"], name: "index_users_on_role"
   end
 
   add_foreign_key "comments", "users"
