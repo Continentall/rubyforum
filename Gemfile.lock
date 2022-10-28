@@ -79,6 +79,7 @@ GEM
     bcrypt (3.1.18)
     benchmark (0.2.0)
     bindex (0.8.1)
+    blueprinter (0.25.3)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -131,9 +132,6 @@ GEM
     irb (1.4.2)
       reline (>= 0.3.0)
     jaro_winkler (1.5.4)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
     json (2.6.2)
@@ -305,6 +303,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-import (~> 1.4)
   bcrypt (~> 3.1.7)
+  blueprinter
   bootsnap
   bullet
   capybara
@@ -314,7 +313,6 @@ DEPENDENCIES
   debug
   draper (~> 4.0)
   faker (~> 2)
-  jbuilder
   jsbundling-rails
   pagy (~> 5.10.1)
   puma (~> 5.0)
