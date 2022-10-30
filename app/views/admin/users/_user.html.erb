@@ -1,8 +1,12 @@
 <!-- user - такой итератор который команда render @users сама отправит в этот паршал ( автопилот :) ) -->
 <tr>
     <th scope="col"><%= user.id %></th>
-    <th scope="col"><%= user.name %></th>
-    <th scope="col"><%= user.email %></th>
-    <th scope="col"><%= user.created_at %></th>
-    <th scope="col"><%= user.updated_at %></th>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.role %></td>
+    <td><%= user.created_at %></td>
+    <td>
+        <%= link_to 'Edit', edit_admin_user_path(user), class: 'btn btn-secondary'%>
+        <%= link_to 'Delete', admin_user_path(user), class: 'btn btn-danger', data: {method: :delete, confirm: t('.confirm')}%>
+    </td>
 </tr>

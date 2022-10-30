@@ -15,6 +15,7 @@ ru:
         email: "Электронная почта"
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
+        role: "Роль"
       comment:
         body: "Текст"
   pages:
@@ -73,10 +74,14 @@ ru:
         download: "Скачать XLSX архив"
         id: "#"
         created: "Создано"
-        updated: "Изменено"
+        role: "Роль"
         import: "Добавить пользователей из XLSX архива"
         choose: "Выберите архив"
         upload: "Загрузить"
+      user:
+        confirm: "Вы уверены, что хотите удалить этого пользователя"
+        edit: "Пользователь изменен"
+        destroy: "Пользователь удалён"
   comments:
     comment:
       confirm: "Вы уверены, что хотите удалить комментарий?"

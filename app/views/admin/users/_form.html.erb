@@ -1,0 +1,70 @@
+<!-- Из-за _в начале названия файла - это Паршал-->
+
+<%= render 'shared/errors', object: user %> <!-- object - переменная внутри паршела errors -->
+
+
+<%= form_with model: user do |f| %> <!-- Создание формы, данные которой пойдут в модель @topic / С помощью f можем добавлять элементы -->
+    <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+            <%= f.label :email %> <!-- Создает html тег label -->
+        </div>
+
+        <div class="col-sm-10">
+            <%= f.text_field :email, class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+            <%= f.label :name %> <!-- Создает html тег label -->
+        </div>
+
+        <div class="col-sm-10">
+            <%= f.text_field :name, class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+            <%= f.label :role %> <!-- Создает html тег label -->
+        </div>
+
+        <div class="col-sm-10">
+            <%= f.select :role, user_roles, {}, class: 'form-select form-select-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+        </div>
+    </div>
+    
+    <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+            <%= f.label :password %> <!-- Создает html тег label -->
+        </div>
+
+        <div class="col-sm-10">
+            <%= f.password_field :password,  class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+        </div>
+    </div>
+    
+    <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+            <%= f.label :password_confirmation %> <!-- Создает html тег label -->
+        </div>
+
+        <div class="col-sm-10">
+            <%= f.password_field :password_confirmation, class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+        </div>
+    </div>
+    <% unless user.new_record? %> <!--new.record? проверяет отсутствует ли объект для которого он вызван в бд (нет в бд -> он находится в памяти)  -->
+        <div class="mb-3 row">
+            <div class="col-sm-2 col-form-label">
+                <%= f.label :old_password %> <!-- Создает html тег label -->
+            </div>
+
+            <div class="col-sm-10">
+                <%= f.password_field :old_password, class: 'form-control form-control-lg' %> <!-- Сложно для восприятия, но важно правилно ставить : -->
+            </div>
+        </div>
+    <% end %>
+
+    <%= f.submit (user.new_record? ? t('.registration') : t('users.form.save')), class: 'btn btn-success btn-lg' %>
+    <!--new.record? проверяет отсутствует ли объект для которого он вызван в бд (нет в бд -> он находится в памяти)  -->
+<% end %>

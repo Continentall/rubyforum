@@ -1,0 +1,6 @@
+<% provide :page_title, t('users.edit.title') %>
+<% currently_at t('users.edit.title')%>
+
+<h1 class="mb-4"> <%= t('users.edit.title')%> </h1>
+
+<%= render 'form', user: @user %>

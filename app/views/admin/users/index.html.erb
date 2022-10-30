@@ -10,11 +10,12 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th scope="col"><%= t('.id')%></th>
-            <th scope="col"><%= t('users.form.login')%></th>
-            <th scope="col"><%= t('users.form.email')%></th>
-            <th scope="col"><%= t('.created')%></th>
-            <th scope="col"><%= t('.updated')%></th>
+            <th scope="col"><%= t('.id') %></th>
+            <th scope="col"><%= t('users.form.login') %></th>
+            <th scope="col"><%= t('users.form.email') %></th>
+            <th scope="col"><%= t('.role') %></th>
+            <th scope="col"><%= t('.created') %></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <%= render @users %> <!-- Легко забыть но, тут не просто рендерятся переменные образца класса а создается цикл который рендерит паршал user заполняя данными user -->

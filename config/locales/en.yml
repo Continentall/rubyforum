@@ -15,6 +15,7 @@ en:
         email: "Email"
         password: "Password"
         password_confirmation: "Password confirmation"
+        role: "Role"
       comment:
         body: "Text"
 
@@ -75,10 +76,14 @@ en:
         download: "Download XLSX archive"
         id: "#"
         created: "Created at"
-        updated: "Updated at"
+        role: "Role"
         import: "Import users from XLSX archive"
         choose: "Choose archive"
         upload: "Upload"
+      user:
+        confirm: "Are you sure you want to delete this user?"
+        edit: "User edited succesfully"
+        destroy: "User destroyed successfuly"
   comments:
     comment:
       confirm: "Are you sure you want to delete the comment?"

@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController #в отличнии от обычного контроллера тут надо написать пространство имен и ::
     before_action :require_authentication
-
+    before_action :set_user!, only: %i[edit update destroy]
     def index
         respond_to do |format| # указываем что в зависимости от формата вызова метода делаем разные вещи
             format.html do
@@ -20,8 +20,33 @@ class Admin::UsersController < ApplicationController #в отличнии от �
         redirect_to admin_users_path
     end
 
+    def edit 
+
+    end
+    def update 
+        if @user.update user_params
+            flash[:success] = t 'admin.users.user.edit'
+            redirect_to admin_users_path
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @user.destroy
+        flash[:success] = t 'admin.users.user.destroy'
+        redirect_to admin_users_path
+    end
+
     private
 
+    def set_user!
+        @user = User.find params[:id]
+    end
+
+    def user_params
+        params.require(:user).permit(:email, :name, :password, :password_confirmation, :role).merge(admin_edit: true)
+    end
     def respond_with_zipperd_users
         compressed_filestream = Zip::OutputStream.write_buffer do |zos| #Генереруем временный архив compressed_filestream
             User.order(created_at: :desc).each do |user| # цикл который для каждого пользователя в БД будет выполнять код ниже

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  attr_accessor :old_password, :remember_token # attr_accessor = attr_writer + attr_reader  позволяет создать для обьекта (тут виртуального) функции запис и чтения
+  enum role: {basic: 0, moderator: 1, admin: 2}, _suffix: :role
+  attr_accessor :old_password, :remember_token, :admin_edit # attr_accessor = attr_writer + attr_reader  позволяет создать для обьекта (тут виртуального) функции запис и чтения
 
   # Теперь поле old_password есть у user на не записанно в БД
 
@@ -11,7 +12,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   validate :password_presence
-  validate :correct_old_password, on: :update
+  validate :correct_old_password, on: :update, if: -> { password.present? && !admin_edit }
   validates :password, confirmation: true, allow_blank: true
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
   validate :password_complexity # validate предназначен для помещения большой валидации посредством функции
