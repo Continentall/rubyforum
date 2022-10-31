@@ -20,10 +20,8 @@ class Admin::UsersController < ApplicationController #в отличнии от �
         redirect_to admin_users_path
     end
 
-    def edit 
-
-    end
-    def update 
+    def edit; end
+    def update
         if @user.update user_params
             flash[:success] = t 'admin.users.user.edit'
             redirect_to admin_users_path

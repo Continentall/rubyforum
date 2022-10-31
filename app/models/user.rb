@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true, allow_blank: true
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
   validate :password_complexity # validate предназначен для помещения большой валидации посредством функции
+  validates :role, presence: true
 
   before_save :set_gravatar_hash, if: :email_changed? #вызов функции перед сохранением или обновлении email
 

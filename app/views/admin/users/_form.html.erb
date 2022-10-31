@@ -3,7 +3,7 @@
 <%= render 'shared/errors', object: user %> <!-- object - переменная внутри паршела errors -->
 
 
-<%= form_with model: user do |f| %> <!-- Создание формы, данные которой пойдут в модель @topic / С помощью f можем добавлять элементы -->
+<%= form_with model: [:admin, user] do |f| %> <!-- Создание формы, данные которой пойдут в модель @topic / С помощью f можем добавлять элементы -->
     <div class="mb-3 row">
         <div class="col-sm-2 col-form-label">
             <%= f.label :email %> <!-- Создает html тег label -->
@@ -64,7 +64,7 @@
             </div>
         </div>
     <% end %>
-
+    <!-- -->
     <%= f.submit (user.new_record? ? t('.registration') : t('users.form.save')), class: 'btn btn-success btn-lg' %>
     <!--new.record? проверяет отсутствует ли объект для которого он вызван в бд (нет в бд -> он находится в памяти)  -->
 <% end %>

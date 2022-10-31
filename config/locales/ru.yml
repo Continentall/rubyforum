@@ -89,6 +89,12 @@ ru:
       success: "Комментарий создан"
     destroy:
       success: "Комментарий удален"
+  global:
+      user:
+        roles:
+          basic: "Обычный"
+          moderator: "Модератор"
+          admin: "Администратор"
         
 
     

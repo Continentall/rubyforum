@@ -25,6 +25,15 @@
     </div>
 
     <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+        <%= f.label :role %>
+    </div>
+
+    <div class="col-sm-10">
+        <%= f.text_field :role, class: 'form-control-plaintext form-control-lg mb-3', readonly: true %>
+    </div>
+
+    <div class="mb-3 row">
         <div class="col-sm-2 col-form-label">
             <%= f.label :password %> <!-- Создает html тег label -->
         </div>

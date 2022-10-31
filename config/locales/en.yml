@@ -91,6 +91,12 @@ en:
       success: "Comment created"
     destroy:
       success: "Comment deleted"
+  global:
+    user:
+      roles:
+        basic: "Basic"
+        moderator: "Moderator"
+        admin: "Admin"
         
 
     
