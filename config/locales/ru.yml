@@ -27,6 +27,9 @@ ru:
     topics: "Темы"
     users: "Пользователи"
     admin: "Админстрирование"
+    sign_in: "Вход"
+    sing_up: "Регистрация"
+
   users:
     new: 
       title: "Регистрация"
@@ -91,6 +94,18 @@ ru:
       success: "Комментарий создан"
     destroy:
       success: "Комментарий удален"
+  password_resets:
+    new:
+      title: "Восстановление пароля"
+      email: "Электронная почта"
+      submit: "Отправить"
+      back: "Назад"
+  session:
+    new:
+      forgot_password: "Забыли пароль?"
+      
+    
+
   global:
       user:
         roles:

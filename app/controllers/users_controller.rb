@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       enter_session @user
-      flash[:success] = t 'global.flash.user.welcome' + #{current_user.name_or_email}" # или с @ current_user
+      flash[:success] = t 'global.flash.user.welcome'
       redirect_to root_path
     else
       render :new

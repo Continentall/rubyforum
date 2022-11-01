@@ -28,6 +28,9 @@ en:
     topics: "Topics"
     users: "Users"
     admin: "Admin"
+    sign_in: "Sign in"
+    sing_up: "Sign up"
+
   users:
     new: 
       title: "Registration"
@@ -93,6 +96,16 @@ en:
       success: "Comment created"
     destroy:
       success: "Comment deleted"
+  password_resets:
+    new:
+      title: "Password reset"
+      email: "Email"
+      submit: "Submit"
+      back: "Back"
+  session:
+    new:
+      forgot_password: "Forgot your password?"
+
   global:
     user:
       roles:
