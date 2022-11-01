@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
   def create
     @message = @topic.messages.build message_create_params # Сообщение =  Новый экземпляр типа ответы в топике с параметрами
     if @message.save
-      flash[:success] = 'Сообщение опубликовано'
+      flash[:success] = t 'global.flash.message.create'
       redirect_to topic_path(@topic) # В скобке указываем топик что-бы оно само вытащило последный id вопроса
     else
       load_topic_messages(do_render: true)
@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
 
   def update
     if @message.update message_update_params
-      flash[:success] = 'Сообщение изменено'
+      flash[:success] = t 'global.flash.message.edit'
       redirect_to topic_path(@topic, anchor: dom_id(@message)) # Якорь позволит после редактирования сразу увитеть мвой изменнный ответ
     else
       render :edit
@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
 
   def destroy
     @message.destroy
-    flash[:success] = 'Сообщение удалено'
+    flash[:success] = t 'global.flash.message.destroy'
     redirect_to topic_path(@topic)
   end
 

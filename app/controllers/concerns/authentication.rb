@@ -57,14 +57,14 @@ module Authentication
     def require_no_authentication
       return unless user_signed_in?
 
-      flash[:warning] = 'Вы уже зарегистрированы'
+      flash[:warning] = t 'global.flash.user.alredy_registered'
       redirect_to root_path
     end
 
     def require_authentication
       return if user_signed_in?
 
-      flash[:warning] = 'Вы не зарегистрированы'
+      flash[:warning] = t 'global.flash.user.not_registered'
       redirect_to root_path
     end
     # по-умолчанию все методы из главного контроллера доступны только в контроллерах

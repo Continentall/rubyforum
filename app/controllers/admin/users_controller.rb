@@ -23,7 +23,7 @@ module Admin
     def create
       if params[:archive].present? # Проверка передан ли архив
         UserBulkService.call params[:archive] # Вызов сервисного класса и передача ему архива
-        flash[:success] = 'Пользователи добавлены'
+        flash[:success] = t 'global.flash.user.create'
       end
       redirect_to admin_users_path
     end

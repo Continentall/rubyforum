@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       enter_session @user
-      flash[:success] = "Добро пожаловать, #{current_user.name_or_email}" # или с @ current_user
+      flash[:success] = t 'global.flash.user.welcome' + #{current_user.name_or_email}" # или с @ current_user
       redirect_to root_path
     else
       render :new
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update user_params
-      flash[:success] = 'Профиль был изменен!'
+      flash[:success] = t 'global.flash.user.edit'
       redirect_to edit_user_path(@user)
     else
       render :edit

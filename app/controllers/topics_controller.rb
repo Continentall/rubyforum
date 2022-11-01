@@ -29,7 +29,7 @@ class TopicsController < ApplicationController
   def create
     @topic = current_user.topics.build topic_params # Создание нового топика с привязкой пользователя с отправленными через post параметрами, отфильтрованными через topic_params
     if @topic.save # тут пытаемся сохранить и если все пройдет валидацию то выполняем if иначе else
-      flash[:success] = 'Обсуждение успешно созданно'
+      flash[:success] = t 'global.flash.topic.create'
       redirect_to topics_path # перенаправить на странцу
     else
       render :new # отобразить еще раз new.html.erb
@@ -38,7 +38,7 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update topic_params # тут пытаемся обновить c новыми параметрами (update - sql комманда как и save) и если все пройдет валидацию то выполняем if иначе else
-      flash[:success] = 'Обсуждение успешно изменено'
+      flash[:success] = t 'global.flash.topic.edit'
       redirect_to topics_path # перенаправить на странцу
     else
       render :edit # отобразить еще раз edit.html.erb
@@ -47,7 +47,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy # Destroy - метод sql
-    flash[:success] = 'Обсуждение удалено'
+    flash[:success] = t 'global.flash.topic.destroy'
     redirect_to topics_path
   end
 

@@ -100,7 +100,25 @@ en:
         moderator: "Moderator"
         admin: "Admin"
     flash:
-      not_authorized: "You are not authorized to perform this action!"
+      user:
+        not_authorized: "You are not authorized to perform this action!"
+        create: "Users are created"
+        already_registered: "You are already signed up"
+        not_registered: "You are not signed up"
+        user_exit: "See you soon"
+        edit: "Profile is edited"
+        wrong_data: "Email and/or password is incorrect"
+        comeback: "Welcome back, "
+        welcome: "Welcome, "
+      message:
+        create: "Message is created"
+        edit: "Message is edited"
+        destroy: "Message is deleted"
+      topic:
+        create: "Topic is created"
+        edit: "Topic is edited"
+        destroy: "Topic is deleted"
+
         
 
     

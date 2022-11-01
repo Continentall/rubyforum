@@ -98,9 +98,21 @@ ru:
           moderator: "Модератор"
           admin: "Администратор"
       flash:
-        not_authorized: "You are not authorized to perform this action!"
-        
-
-    
-
-
+        user:
+          not_authorized: "Вы не авторизованы для выполнения данной операции"
+          create: "Пользователи создан"
+          already_registered: "Вы уже зарегистрированы"
+          not_registered: "Вы не зарегистрированы"
+          user_exit: "До скорых встреч"
+          edit: "Профиль изменен"
+          wrong_data: "Неверная почта и/или пароль"
+          comeback: "С возвращением, "
+          welcome: "Добро пожаловать, "
+        message:
+          create: "Сообщение создано"
+          edit: "Сообщение изменено"
+          destroy: "Сообщение удалено"
+        topic:
+          create: "Обсуждение создано"
+          edit: "Обсуждение изменено"
+          destroy: "Обсуждение удалено"
