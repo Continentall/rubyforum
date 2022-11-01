@@ -20,8 +20,12 @@
                         </div>
                     </div>
             </section>
-                <%= link_to t('topics.show.edit'), edit_topic_message_path(local_topic, message), class: 'btn btn-primary btn-sm' %>
-                <%= link_to t('topics.show.delete'), topic_message_path(local_topic, message), class: 'btn btn-danger btn-sm', data: { method: :delete, confirm: t('topics.show.confirm') } %>
+                <% if policy(message).edit? %>
+                    <%= link_to t('topics.show.edit'), edit_topic_message_path(local_topic, message), class: 'btn btn-primary btn-sm' %>
+                <% end %>    
+                <% if policy(message).destroy? %>                
+                    <%= link_to t('topics.show.delete'), topic_message_path(local_topic, message), class: 'btn btn-danger btn-sm', data: { method: :delete, confirm: t('topics.show.confirm') } %>
+                <% end %>
             </div>
         </div>
     </div>

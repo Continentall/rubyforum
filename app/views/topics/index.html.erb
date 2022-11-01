@@ -14,9 +14,9 @@
     <% end %>
 </section>
 
-
-<%= link_to t('topics.new.topic'), new_topic_path, class: 'btn btn-success btn-lg mb-3'%>
-
+<% if policy(:topic).new? %>
+  <%= link_to t('topics.new.topic'), new_topic_path, class: 'btn btn-success btn-lg mb-3'%>
+<% end %>
 <%= pagination @pagy %> 
 
 <%= render @topics %>

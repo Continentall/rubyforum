@@ -1,11 +1,12 @@
 <% is_current_comment = comment&.for?(commentable) %> <!-- булевая переменная говорящая был ли оставлен комментарий-->
+<% comment_builder = is_current_comment ? comment : commentable.comments.build%>
 
 <%= link_to t('topics.show.comments'), "##{html_id}", 
 class: 'btn btn-primary', data: {'bs-toggle': 'collapse'} %> <!-- data: {'bs-toggle': 'collapse'} указывается для правильной обработки bootstrap'ом-->
 
 <%= tag.div class: "collapse #{'show' if is_current_comment}", id: html_id do %>
-    <%= form_with model: [commentable, 
-    (is_current_comment ? comment : commentable.comments.build)],
+    <% if policy(comment_builder).create? %>
+    <%= form_with model: [commentable, (comment_builder)],
     class: 'pt-3 border-top my-2' do |f| %> <!-- @comment || commentable.comments.build  - создаем коментарий для коментируемого типа( его передадут в паршал при вызове) если @comment пуст-->
     <% if is_current_comment %>
         <%= render 'shared/errors', object: @comment %>
@@ -20,6 +21,7 @@ class: 'btn btn-primary', data: {'bs-toggle': 'collapse'} %> <!-- data: {'bs-tog
         </div>
     </div>
         <%= f.submit t('topics.form.publish'), class: 'btn btn-primary'%>
+    <% end %>
     <% end %>
 
     <%= render commentable.comments.decorate %> <!-- Список всех комментариев (рендеринг) -->

@@ -27,6 +27,7 @@ en:
     home: "Home"
     topics: "Topics"
     users: "Users"
+    admin: "Admin"
   users:
     new: 
       title: "Registration"
@@ -45,7 +46,6 @@ en:
       more: "More"
       edit: "Edit"
       delete: "Delete"
-      title: "Write your message"
       messages: "Messages"
       confirm: "Are you sure you want to delete the message?"
       comments: "Show comments"
@@ -69,6 +69,8 @@ en:
   messages:
     edit:
       title: "Edit message"
+    form:
+      authorize_to_write: "Register to write messages"
   admin:
     users:
       index:
@@ -97,6 +99,8 @@ en:
         basic: "Basic"
         moderator: "Moderator"
         admin: "Admin"
+    flash:
+      not_authorized: "You are not authorized to perform this action!"
         
 
     

@@ -1,5 +1,7 @@
-class TagBlueprint < Blueprinter::Base
-    identifier :id
+# frozen_string_literal: true
 
-    fields :title
+class TagBlueprint < Blueprinter::Base
+  identifier :id
+
+  fields :title
 end

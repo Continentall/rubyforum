@@ -1,5 +1,5 @@
 <%= render 'shared/errors', object: @message %>
-
+<% if policy(:message).new? %> 
 <%= form_with model: [@topic, @message] do |f|%> <!-- Почему же model: [@topic, @message], потому что путь для отправки данных состоит из двух частей, а не одной  -->
     <div class="mb-3 row">
         <div class="col-sm-2 col-form-label">
@@ -10,4 +10,7 @@
         </div>
     </div>
     <%= f.submit t('topics.form.publish'), class: 'btn btn-primary'%>
+<% end %>
+<% else %>
+    <h5 class="text-secondary text-center mt-3"><%= t('.authorize_to_write') %></h5>
 <% end %>

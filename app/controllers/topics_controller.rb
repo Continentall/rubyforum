@@ -3,7 +3,10 @@
 # Всегда называйте контроллер так (имя таблицы + s)_controller.rb
 class TopicsController < ApplicationController
   include TopicsMessages
+  before_action :require_authentication, except: %i[show index]
   before_action :find_topic_by_id!, only: %i[edit update show destroy] # Эта запись говорит, что перед выполнением методов в квадратных ковычках нужно выполнить функцию find_topic_by_id
+  before_action :authorize_topic!
+  after_action :verify_authorized # Метод из Pundit он проверит сделана ли проверка прав *(если права не проверили то выскочит ошибка)
   # Контроллер для отображения всех Топиков
   def index
     @pagy, @topics = pagy Topic.all_by_tags(params[:tag_ids])
@@ -13,9 +16,15 @@ class TopicsController < ApplicationController
   end
 
   # контроллер для создания нового Топика (без сохранения). Как в sqllite3 создание записи без t.save. Запись кстати по post запросу отправляется
+  def show
+    load_topic_messages
+  end
+
   def new
     @topic = Topic.new # Создание новой переменной образца класса, для хранения 1го топика
   end
+
+  def edit; end
 
   def create
     @topic = current_user.topics.build topic_params # Создание нового топика с привязкой пользователя с отправленными через post параметрами, отфильтрованными через topic_params
@@ -26,8 +35,6 @@ class TopicsController < ApplicationController
       render :new # отобразить еще раз new.html.erb
     end
   end
-
-  def edit; end
 
   def update
     if @topic.update topic_params # тут пытаемся обновить c новыми параметрами (update - sql комманда как и save) и если все пройдет валидацию то выполняем if иначе else
@@ -44,10 +51,6 @@ class TopicsController < ApplicationController
     redirect_to topics_path
   end
 
-  def show
-    load_topic_messages
-  end
-
   private
 
   def topic_params
@@ -60,5 +63,9 @@ class TopicsController < ApplicationController
     # Используя метод find можно получить объект, соответствующий определенному первичному ключу. ПРИ ПЕРЕДАЧЕ НЕСУЩЕСТВУЮЩЕГО ПАРАМЕТРА ВЫДАСТ ERROR
     # Метод find_by ищет первую запись, соответствующую некоторым условиям. ПРИ ПЕРЕДАЧЕ НЕСУЩЕСТВУЮЩЕГО ПАРАМЕТРА ВЫДАСТ nil
     # Метод where подходит если нужно получить несколько записей которые соответствуют определенным условиям
+  end
+
+  def authorize_topic!
+    authorize(@toic || Topic) # authorize - метод из Pundit (он по сути делает проверки прав) он так же вызовет initialize и для пользовотеля оно по умолчанию вызовет метод current_user
   end
 end

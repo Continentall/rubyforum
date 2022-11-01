@@ -5,7 +5,12 @@ class MessagesController < ApplicationController
   include ActionView::RecordIdentifier # модуль в котором находится dom_id надо подключить сюда, в html.erb его и так видно
   before_action :find_topic_by_id!
   before_action :find_message_by_id!, except: :create
+  before_action :authorize_message!
+  after_action :verify_authorized
   # Порядок before_action важен! Сначала ищем тему, потом для нее ответы
+  def edit; end
+  # !!!!!!!!!!!!!!!!!! @messages = @topic.messages.order created_at :desc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   def create
     @message = @topic.messages.build message_create_params # Сообщение =  Новый экземпляр типа ответы в топике с параметрами
     if @message.save
@@ -15,7 +20,6 @@ class MessagesController < ApplicationController
       load_topic_messages(do_render: true)
     end
   end
-  # !!!!!!!!!!!!!!!!!! @messages = @topic.messages.order created_at :desc !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   def update
     if @message.update message_update_params
@@ -31,8 +35,6 @@ class MessagesController < ApplicationController
     flash[:success] = 'Сообщение удалено'
     redirect_to topic_path(@topic)
   end
-
-  def edit; end
 
   private
 
@@ -56,5 +58,9 @@ class MessagesController < ApplicationController
   def find_message_by_id!
     @message = @topic.messages.find params[:id]
     # Сообщение = от пременной топик sql запросом выбирает сообщение с нужным id
+  end
+
+  def authorize_message!
+    authorize(@message || Message)
   end
 end

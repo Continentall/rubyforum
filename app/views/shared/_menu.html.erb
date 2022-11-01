@@ -5,6 +5,9 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><%= nav_tab t('menu.home') ,root_path, class: 'nav-link px-2', current_page: local_current_page %></li> <!-- root - префикс страницы (смотреть в rails/routes), куда мы переходим, _path - указание на отностительность ссылки --->
                 <li><%= nav_tab t('menu.topics'),topics_path, class: 'nav-link px-2', current_page: local_current_page %></li> <!-- Почему-то нужно указывать класс после пути! Иначе ошибка( -->
+                <% if policy([:admin, :user]).index? %>
+                    <li><%= nav_tab t('menu.admin'),admin_users_path, class: 'nav-link px-2', current_page: local_current_page %></li>
+                <% end %>
             </ul>
 
             <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">

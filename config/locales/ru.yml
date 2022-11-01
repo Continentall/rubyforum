@@ -26,6 +26,7 @@ ru:
     home: "Главная"
     topics: "Темы"
     users: "Пользователи"
+    admin: "Админстрирование"
   users:
     new: 
       title: "Регистрация"
@@ -44,7 +45,6 @@ ru:
       more: "Подробнее"
       edit: "Изменить"
       delete: "Удалить"
-      title: "Напишите ваше сообщение"
       messages: "Сообщения"
       confirm: "Вы уверены, что хотите удалить сообщение?"
       comments: "Показать комментарии"
@@ -67,6 +67,8 @@ ru:
   messages:
     edit:
       title: "Изменение сообщения"
+    form:
+      authorize_to_write: "Зарегистрируйтесь, что бы писать сообщения"
   admin:
     users:
       index:
@@ -95,6 +97,8 @@ ru:
           basic: "Обычный"
           moderator: "Модератор"
           admin: "Администратор"
+      flash:
+        not_authorized: "You are not authorized to perform this action!"
         
 
     

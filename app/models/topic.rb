@@ -2,8 +2,9 @@
 
 # ApplicationRecord < ActiveRecord
 class Topic < ApplicationRecord
+  include Authorship
   include Commentable
-  
+
   has_many :messages, dependent: :destroy # Пусть это указанно в БД. Но тут надо указать тоже чтобы использовать эту связь делая запросы кодом Ruby
   # :dependent - Управляет тем, что произойдет со связанными объектами, когда его владелец будет уничтожен: destroy - одна из его опций
   # Все опци смотреть тут (6.25 пункт): http://rusrails.ru/active-record-associations#dependent3
@@ -14,9 +15,9 @@ class Topic < ApplicationRecord
   validates :title, presence: true, length: { minimum: 2 } # Валидация заголовка на его наличие и длину более 2
   validates :body, presence: true, length: { minimum: 2 }
 
-  scope :all_by_tags, ->(tag_ids) do
+  scope :all_by_tags, lambda { |tag_ids|
     topics = includes(:user, :topic_tags, :tags)
     topics = topics.joins(:tags).where(tags: tag_ids) if tag_ids
     topics.order(created_at: :desc)
-  end
+  }
 end

@@ -21,12 +21,14 @@
     <div class="border-top border-bottom py-3 mt-3">
         <div class="btn-group">
             <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
-            <%= link_to t('.edit'), edit_topic_path(@topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
-            <%= link_to t('.delete'), topic_path(@topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: t('.confirm')} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
+            <% if policy(@topic).edit? %>
+                <%= link_to t('.edit'), edit_topic_path(@topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
+            <% end %>
+            <% if policy(@topic).destroy? %>
+                <%= link_to t('.delete'), topic_path(@topic.id),class: 'btn btn-danger', data: {method: :delete, confirm: t('.confirm')} %> <!-- В этому случае не нужно дать POST запрос на страницу вопросов, а нужно дать DELETE запрос  -->
+            <% end %>
         </div>
     </div>
-<h2 class="text-center mb-4"><%= t('.title') %></h2>
-
 <%= render 'messages/form' %>
 
 <h2 class="mt-5"><%= t('.messages') %></h2>
