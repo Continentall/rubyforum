@@ -19,7 +19,7 @@ module Authentication
     end
 
     def user_from_token
-      user ||= User.find_by(id: cookies.encrypted[:user_id])
+      user = User.find_by(id: cookies.encrypted[:user_id])
       token = cookies.encrypted[:remember_token]
 
       return unless user&.remember_token_authenticated?(token) # Уходим с функции если токен в куки и в бд не совпал

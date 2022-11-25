@@ -21,7 +21,10 @@ en:
 
   pages:
     index:
-      title: "Welcome to ITcolleque"
+      title: "Welcome to ITcolloquy"
+  password_reset:
+    fail: "Could not reset your password"
+    success: "Password was successfully reset"
 
   menu:
     home: "Home"
@@ -102,6 +105,9 @@ en:
       email: "Email"
       submit: "Submit"
       back: "Back"
+    edit:
+      title: "Enter new password"
+      submit: "Save new password"
   session:
     new:
       forgot_password: "Forgot your password?"

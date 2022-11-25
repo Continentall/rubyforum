@@ -20,8 +20,10 @@ ru:
         body: "Текст"
   pages:
     index:
-      title: "Добро пожаловать на ITcolleque"
-
+      title: "Добро пожаловать на ITcolloquy"
+  password_reset:
+    fail: "Не удалось восстановить пароль"
+    success: "Пароль успешно сброшен"
   menu:
     home: "Главная"
     topics: "Темы"
@@ -100,6 +102,9 @@ ru:
       email: "Электронная почта"
       submit: "Отправить"
       back: "Назад"
+    edit:
+      title: "Введите новый пароль"
+      submit: "Сохранить новый пароль"
   session:
     new:
       forgot_password: "Забыли пароль?"
