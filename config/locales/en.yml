@@ -121,8 +121,9 @@ en:
         user_exit: "See you soon"
         edit: "Profile is edited"
         wrong_data: "Email and/or password is incorrect"
-        comeback: "Welcome back, "
-        welcome: "Welcome, "
+        comeback: "Welcome back "
+        welcome: "Welcome "
+        reset_password_message_send: "Password recovery code has been sent to your email."
       message:
         create: "Message is created"
         edit: "Message is edited"
@@ -131,6 +132,11 @@ en:
         create: "Topic is created"
         edit: "Topic is edited"
         destroy: "Topic is deleted"
+    password_reset_mailer:
+          title: "ITcolleque password reset"
+          text: "Someone has requested password reset for your account."
+          warning: "If it was you, click on the button below and follow the instructions. If you didn't request a letter, just ignore it."
+          button: "Reset password"
 
         
 

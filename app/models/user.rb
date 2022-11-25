@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include Recoverable
   enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
   attr_accessor :old_password, :remember_token, :admin_edit # attr_accessor = attr_writer + attr_reader  позволяет создать для обьекта (тут виртуального) функции запис и чтения
 
@@ -66,7 +67,7 @@ class User < ApplicationRecord
            else
              BCrypt::Engine.cost
            end
-    BCrypt::Password.create(string, cost:)
+    BCrypt::Password.create(string, cost: cost)
   end
 
   def password_complexity

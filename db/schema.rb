@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_28_100855) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_02_140315) do
   create_table "comments", force: :cascade do |t|
     t.string "body"
     t.string "commentable_type", null: false
@@ -66,7 +66,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_100855) do
     t.string "remember_token_digest"
     t.string "gravatar_hash"
     t.integer "role", default: 0, null: false
+    t.datetime "password_reset_sent_at"
+    t.string "password_reset_token"
+    t.datetime "password_reset_token_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["password_reset_token"], name: "index_users_on_password_reset_token"
     t.index ["role"], name: "index_users_on_role"
   end
 

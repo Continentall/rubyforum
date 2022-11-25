@@ -50,6 +50,7 @@ group :development do
   gem 'rubocop-rails', '~> 2.16', require: false
   gem 'solargraph'
   gem 'web-console'
+  gem 'letter_opener'
 end
 
 group :test do
