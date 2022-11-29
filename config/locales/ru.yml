@@ -105,7 +105,7 @@ ru:
     edit:
       title: "Введите новый пароль"
       submit: "Сохранить новый пароль"
-  session:
+  sessions:
     new:
       forgot_password: "Забыли пароль?"
       

@@ -108,7 +108,7 @@ en:
     edit:
       title: "Enter new password"
       submit: "Save new password"
-  session:
+  sessions:
     new:
       forgot_password: "Forgot your password?"
 
