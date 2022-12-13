@@ -45,12 +45,12 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'bullet'
+  gem 'letter_opener'
   gem 'rubocop', '~> 1.36', require: false
   gem 'rubocop-performance', '~> 1.15', require: false
   gem 'rubocop-rails', '~> 2.16', require: false
   gem 'solargraph'
   gem 'web-console'
-  gem 'letter_opener'
 end
 
 group :test do

@@ -29,6 +29,7 @@ class SessionsController < ApplicationController
   def set_user
     @user = User.find_by email: params[:email]
   end
+
   def sign_in(user)
     enter_session(user)
     remember(user) if params[:remember_me] == '1' # remember - метод который будет написанн в authenticate

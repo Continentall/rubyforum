@@ -22,6 +22,7 @@ en:
   pages:
     index:
       title: "Welcome to ITcolloquy"
+      about: "If you only knew how glad we are to see you!"
   password_reset:
     fail: "Could not reset your password"
     success: "Password was successfully reset"
@@ -60,6 +61,7 @@ en:
     index:
       confirm: "Are you sure you want to delete the topic"
       search_by_tags: "Search by tags"
+      about: "Ask, answer, help each other become better!"
     edit:
       title: "Edit topic"
     form:

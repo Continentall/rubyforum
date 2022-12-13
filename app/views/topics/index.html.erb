@@ -1,6 +1,12 @@
 <% provide :page_title, t('menu.topics') %> <!--provide сохраняет "Обсуждения" в :page_title-->
 <% currently_at t('menu.topics') %>
+<div
+  class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
+  style="background-image: url(<%= asset_path 'mainpage.jpg' %>) "
+>
 <h1 class="text-center mb-4"><%= t('menu.topics') %></h1>
+<p><%=t('.about') %></p>
+</div>
 <section class="mb-5">
     <h2><%= t('.search_by_tags') %></h2>
     <%= form_with url: topics_path, method: :get do |f|%>

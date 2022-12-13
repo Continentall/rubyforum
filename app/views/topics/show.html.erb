@@ -1,8 +1,8 @@
 <% currently_at t('menu.topics')%>
 <% provide :page_title, t('.topic')%>
-<h1 class="text-center mb-4"><%= @topic.title%> </h1>
-<small class="text-center">Id: <%= @topic.id %></small>
-<br>
+<h1 class="text-center mb-4">
+    <%= @topic.title%> 
+</h1>
 <time datetime="<%= @topic.formatted_created_at%>">
     <small><%= @topic.formatted_created_at %></small>
 </time>
