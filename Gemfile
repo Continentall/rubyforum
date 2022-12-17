@@ -36,6 +36,7 @@ gem 'rubyXL', '~>3.4'
 gem 'rubyzip', '~> 2.3.2'
 gem 'valid_email2', '~>4.0'
 gem "nokogiri", ">= 1.13.10"
+gem "loofah", ">= 2.19.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
