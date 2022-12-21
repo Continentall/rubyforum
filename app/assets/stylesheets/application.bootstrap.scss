@@ -35,3 +35,10 @@
       top: 2px;
     }
   }
+  .pagination {
+    .active > .page-link{
+      background-color: lightgray;
+      border-color: lightgray;
+      color: black;
+    }
+  }

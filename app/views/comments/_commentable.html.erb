@@ -2,7 +2,7 @@
 <% comment_builder = is_current_comment ? comment : commentable.comments.build%>
 
 <%= link_to t('topics.show.comments'), "##{html_id}", 
-class: 'btn btn-success', data: {'bs-toggle': 'collapse'} %> <!-- data: {'bs-toggle': 'collapse'} указывается для правильной обработки bootstrap'ом-->
+class: 'btn btn-primary', data: {'bs-toggle': 'collapse'} %> <!-- data: {'bs-toggle': 'collapse'} указывается для правильной обработки bootstrap'ом-->
 
 <%= tag.div class: "collapse #{'show' if is_current_comment}", id: html_id do %>
     <% if policy(comment_builder).create? %>
@@ -20,7 +20,7 @@ class: 'btn btn-success', data: {'bs-toggle': 'collapse'} %> <!-- data: {'bs-tog
             <%= f.text_area :body, class: 'form-control form-control-sm'%>
         </div>
     </div>
-        <%= f.submit t('topics.form.publish'), class: 'btn btn-success'%>
+        <%= f.submit t('topics.form.publish'), class: 'btn btn-primary'%>
     <% end %>
     <% end %>
 

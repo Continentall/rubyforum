@@ -4,7 +4,7 @@
             <%= topic.user.gravatar %>
             <%= topic.user.name_or_email %>
         </section>
-        <div class="card-body">
+        <div class="card-body bg-light">
             <h4 class="mb-0">
                 <%= topic.title%> <!--передача заголовка topic'а в h2 тег-->
             </h4>
@@ -22,7 +22,7 @@
                     <br>
                 </p>
                 <p class="float-end mb-0">
-                    <%= link_to t('topics.show.more'), topic_path(topic.id), class: 'btn btn-success' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
+                    <%= link_to t('topics.show.more'), topic_path(topic.id), class: 'btn btn-primary' %> <!-- В перфиксах очень просто запуться, смотри их в rails/routes -->
                     <% if policy(topic).edit? %>
                         <%= link_to t('topics.show.edit'), edit_topic_path(topic.id), class: 'btn btn-secondary' %> <!--Префикс edit_topic_path генерируется сам, но ему еще надо передать топик :ID -->  
                     <% end %>

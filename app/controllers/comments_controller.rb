@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
     redirect_to topic_path(@topic)
   end
 
+  
   private
 
   def comment_params
