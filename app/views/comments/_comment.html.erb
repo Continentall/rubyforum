@@ -12,7 +12,7 @@
               <%= sanitize comment.body %>
             </p>
               <% if policy(comment).destroy?%>
-                <%= link_to t('topic.show.delete'), polymorphic_path([comment.commentable, comment]), class: 'btn btn-danger btn-sm',
+                <%= link_to t('topic.show.delete'), polymorphic_path([comment.commentable, comment]), class: 'btn btn-outline-dark btn-sm',
                 data: {method: :delete, confirm: t('.confirm')} %>
               <% end %>
           </div>

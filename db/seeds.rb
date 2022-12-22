@@ -11,7 +11,7 @@
 
 # User.find_each {|u| u.send(:set_gravatar_hash); u.save} # Этот мистический send позволяет вызвать даже private методы
 
-30.times do
+100.times do
   title = Faker::ProgrammingLanguage.name
   Tag.create title:
 end

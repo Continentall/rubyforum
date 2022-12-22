@@ -7,15 +7,15 @@
 <h1 class="text-center mb-4"><%= t('menu.topics') %></h1>
 <p><%=t('.about') %></p>
 </div>
-<section class="mb-5">
+<section class="mb-5 ">
     <h2><%= t('.search_by_tags') %></h2>
-    <%= form_with url: topics_path, method: :get do |f|%>
-      <div class="mb-3">
-        <%= f.collection_select :tag_ids, [], :id, :title, {selected: params[:tag_ids]},
-        multiple: true, required: true,
-        class: 'js-multiple-select', data: {'ajax-url': '/api/tags'} %>
-      </div>
-      <%= f.submit t('.search_by_tags'), class: 'btn btn-primary' %>
+      <%= form_with url: topics_path, method: :get do |f|%>
+        <div class="mb-3 me-3 w-75 float-start">
+          <%= f.collection_select :tag_ids, [], :id, :title, {selected: params[:tag_ids]},
+          multiple: true, required: true,
+          class: 'js-multiple-select', data: {'ajax-url': '/api/tags'} %>
+        </div>
+        <%= f.submit t('.search_by_tags'), class: 'btn btn-outline-dark w-20' %>
     <% end %>
 </section>
 

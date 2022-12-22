@@ -64,6 +64,6 @@
         </div>
     <% end %>
 
-    <%= f.submit (@user.new_record? ? t('.registration') : t('.save')), class: 'btn btn-primary btn-lg' %>
+    <%= f.submit (@user.new_record? ? t('.registration') : t('.save')), class: 'btn btn-outline-dark btn-lg' %>
     <!--new.record? проверяет отсутствует ли объект для которого он вызван в бд (нет в бд -> он находится в памяти)  -->
 <% end %>
