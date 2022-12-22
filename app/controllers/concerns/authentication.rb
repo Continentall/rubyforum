@@ -57,7 +57,7 @@ module Authentication
     def require_no_authentication
       return unless user_signed_in?
 
-      flash[:warning] = t 'global.flash.user.alredy_registered'
+      flash[:warning] = t 'global.flash.user.already_registered'
       redirect_to root_path
     end
 

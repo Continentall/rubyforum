@@ -11,7 +11,7 @@ module Authorization
     private
 
     def user_not_authorized
-      flash[:danger] = t 'global.flash.not_authorized'
+      flash[:danger] = t 'global.flash.user.not_authorized'
       redirect_to(request.referer || root_path)
     end
   end
